@@ -1,0 +1,28 @@
+{
+  "display": "Configuration for Lissajous Curves",
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": false,
+    "alwaysStrict": true,                     
+    "strict": true,                           
+    "lib": ["ESNext", "dom"],                 
+    "skipLibCheck": true,
+    "noImplicitAny": true,                    
+    "noFallthroughCasesInSwitch": true,       
+    "noImplicitReturns": true,                
+    "noUnusedLocals": true,                   
+    "forceConsistentCasingInFileNames": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "removeComments": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
