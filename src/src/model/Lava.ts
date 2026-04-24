@@ -18,29 +18,29 @@ import { Vector } from '../Vector.js';
 /** @classdesc Represents a hazardous lava element in the game world. */
 export class Lava extends Actor {
   private speed: Vector;
-  private repeatPos: Vector;
+  private repeatPosition: Vector;
 
   /**
    * @desc Creates a new Lava instance at the specified position with the given type.
-   * @param pos - The initial position of the lava
-   * @param ch - The character representing lava type
+   * @param position - The initial position of the lava
+   * @param char - The character representing lava type
    */
-  constructor(pos: Vector, ch: string) {
+  constructor(position: Vector, char: string) {
     super();
-    this.position = pos;
+    this.position = position;
     this.size = new Vector(1, 1);
-    if (ch === '=') {
+    if (char === '=') {
       this.speed = new Vector(2, 0);
-      this.repeatPos = new Vector(0, 0);
-    } else if (ch === '|') {
+      this.repeatPosition = new Vector(0, 0);
+    } else if (char === '|') {
       this.speed = new Vector(0, 2);
-      this.repeatPos = new Vector(0, 0);
-    } else if (ch === 'v') {
+      this.repeatPosition = new Vector(0, 0);
+    } else if (char === 'v') {
       this.speed = new Vector(0, 3);
-      this.repeatPos = this.getPosition();
+      this.repeatPosition = this.getPosition();
     } else {
       this.speed = new Vector(0, 0);
-      this.repeatPos = new Vector(0, 0);
+      this.repeatPosition = new Vector(0, 0);
     }
     this.setType('lava');
   }
@@ -54,8 +54,8 @@ export class Lava extends Actor {
     const newPos = this.getPosition().plus(this.speed.times(step));
     if (!level.obstacleAt(newPos, this.getSize())) {
       this.position = newPos;
-    } else if (this.repeatPos && this.speed.y > 0) {
-      this.position = this.repeatPos;
+    } else if (this.repeatPosition && this.speed.y > 0) {
+      this.position = this.repeatPosition;
     } else {
       this.speed = this.speed.times(-1);
     }

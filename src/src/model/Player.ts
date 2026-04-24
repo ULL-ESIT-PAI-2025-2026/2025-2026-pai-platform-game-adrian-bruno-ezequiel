@@ -21,11 +21,11 @@ export class Player extends Actor {
 
   /**
    * @desc Creates a new Player instance at the specified tile position.
-   * @param pos - The tile position where the player should be placed
+   * @param position - The tile position where the player should be placed
    */
-  constructor(pos: Vector) {
+  constructor(position: Vector) {
     super();
-    this.position = pos.plus(new Vector(0, -0.5));
+    this.position = position.plus(new Vector(0, -0.5));
     this.size = new Vector(0.8, 1.5);
     this.speed = new Vector(0, 0);
     this.type = 'player';
@@ -43,12 +43,12 @@ export class Player extends Actor {
     if (keys.left) this.speed.x -= playerXSpeed;
     if (keys.right) this.speed.x += playerXSpeed;
     const motion = new Vector(this.speed.x * step, 0);
-    const newPos = this.getPosition().plus(motion);
-    const obstacle = level.obstacleAt(newPos, this.getSize());
+    const newPosition = this.getPosition().plus(motion);
+    const obstacle = level.obstacleAt(newPosition, this.getSize());
     if (obstacle) {
       level.playerTouched(obstacle);
     } else {
-      this.setPosition(newPos);
+      this.setPosition(newPosition);
     }
   }
 
@@ -63,8 +63,8 @@ export class Player extends Actor {
     const jumpSpeed = 17;
     this.speed.y += step * gravity;
     const motion = new Vector(0, this.speed.y * step);
-    const newPos = this.getPosition().plus(motion);
-    const obstacle = level.obstacleAt(newPos, this.getSize());
+    const newPosition = this.getPosition().plus(motion);
+    const obstacle = level.obstacleAt(newPosition, this.getSize());
     if (obstacle) {
       level.playerTouched(obstacle);
       if (keys.up && this.speed.y > 0) {
@@ -73,7 +73,7 @@ export class Player extends Actor {
         this.speed.y = 0;
       }
     } else {
-      this.position = newPos;
+      this.position = newPosition;
     }
   }
 

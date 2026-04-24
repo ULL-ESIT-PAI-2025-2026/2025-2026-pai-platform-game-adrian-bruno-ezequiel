@@ -188,15 +188,15 @@ export class Level {
 
   /**
    * @desc Checks if a bounding box overlaps with any obstacle.
-   * @param pos - Position vector of the bounding box
+   * @param position - Position vector of the bounding box
    * @param size - Size vector of the bounding box
    * @returns The type of obstacle encountered, or empty string if none
    */
-  obstacleAt(pos: Vector, size: Vector): string | undefined {
-    const xStart = Math.floor(pos.x);
-    const xEnd = Math.ceil(pos.x + size.x);
-    const yStart = Math.floor(pos.y);
-    const yEnd = Math.ceil(pos.y + size.y);
+  obstacleAt(position: Vector, size: Vector): string | undefined {
+    const xStart = Math.floor(position.x);
+    const xEnd = Math.ceil(position.x + size.x);
+    const yStart = Math.floor(position.y);
+    const yEnd = Math.ceil(position.y + size.y);
 
     if (xStart < 0 || xEnd > this.width || yStart < 0) return 'wall';
     if (yEnd > this.height) return 'lava';

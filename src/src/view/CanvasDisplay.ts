@@ -104,7 +104,7 @@ export class CanvasDisplay {
         const tile = grid[y]?.[x];
         if (!tile) continue;
 
-        const screenPos = this.worldToCanvas(new Vector(x, y));
+        const screenPosition = this.worldToCanvas(new Vector(x, y));
 
         const tileX = tile === 'lava' ? this.scale : 0;
 
@@ -112,8 +112,8 @@ export class CanvasDisplay {
           this.otherSprites,
           tileX, 0,
           this.scale, this.scale,
-          screenPos.x,
-          screenPos.y,
+          screenPosition.x,
+          screenPosition.y,
           this.scale,
           this.scale
         );
@@ -123,13 +123,13 @@ export class CanvasDisplay {
 
   /**
    * @desc Converts world coordinates to canvas pixel coordinates.
-   * @param pos - World position vector (in grid units)
+   * @param position - World position vector (in grid units)
    * @returns Screen position vector (in pixels)
    */
-  worldToCanvas(pos: Vector): Vector {
+  worldToCanvas(position: Vector): Vector {
     return new Vector(
-      (pos.x - this.viewport.left) * this.scale,
-      (pos.y - this.viewport.top) * this.scale
+      (position.x - this.viewport.left) * this.scale,
+      (position.y - this.viewport.top) * this.scale
     );
   }
 
@@ -209,8 +209,8 @@ export class CanvasDisplay {
       const width = actor.size.x * this.scale;
       const height = actor.size.y * this.scale;
 
-      const worldPos = actor.position;
-      const screenPos = this.worldToCanvas(worldPos);
+      const worldPosition = actor.position;
+      const screenPosition = this.worldToCanvas(worldPosition);
       const tileX = (actor.type === 'coin' ? 2 : 1) * this.scale;
       if (actor.type === 'player') return;
       this.context.drawImage(
@@ -219,8 +219,8 @@ export class CanvasDisplay {
         0,
         width,
         height,
-        screenPos.x,
-        screenPos.y,
+        screenPosition.x,
+        screenPosition.y,
         width,
         height
       );

@@ -16,16 +16,16 @@ import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a collectible coin in the game world. */
 export class Coin extends Actor {
-  private basePos: Vector;
+  private basePosition: Vector;
   private wobble: number;
   /**
    * @desc Creates a new Coin instance at the specified position.
-   * @param pos - The base position where the coin should be placed
+   * @param position - The base position where the coin should be placed
    */
-  constructor(pos: Vector) {
+  constructor(position: Vector) {
     super();
-    this.basePos = pos.plus(new Vector(0.2, 0.1));
-    this.position = this.basePos;
+    this.basePosition = position.plus(new Vector(0.2, 0.1));
+    this.position = this.basePosition;
     this.size = new Vector(0.6, 0.6);
     this.wobble = Math.random() * Math.PI * 2;
     this.setType('coin');
@@ -39,7 +39,7 @@ export class Coin extends Actor {
     const wobbleSpeed = 8;
     const wobbleDist = 0.07;
     this.wobble += step * wobbleSpeed;
-    const wobblePos = Math.sin(this.wobble) * wobbleDist;
-    this.setPosition(this.basePos.plus(new Vector(0, wobblePos)));
+    const wobblePosition = Math.sin(this.wobble) * wobbleDist;
+    this.setPosition(this.basePosition.plus(new Vector(0, wobblePosition)));
   }
 }

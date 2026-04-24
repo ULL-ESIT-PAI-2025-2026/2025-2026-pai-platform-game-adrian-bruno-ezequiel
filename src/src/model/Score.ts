@@ -21,11 +21,11 @@ export class Score extends Actor {
 
   /**
    * @desc Creates a new Score UI element at the specified position.
-   * @param pos - The position vector where the score display should be placed
+   * @param position - The position vector where the score display should be placed
    */
-  constructor(pos: Vector) {
+  constructor(position: Vector) {
     super();
-    this.position = pos;
+    this.position = position;
     this.size = new Vector(1, 1);
     this.type = 'score';
   }
