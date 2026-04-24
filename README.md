@@ -1,4 +1,4 @@
-# 🎮 Platform Game
+# 🎮 Platform Game 🎮
 
 A Mario-inspired 2D platformer built with TypeScript and the HTML5 Canvas API. Navigate levels, collect coins, avoid lava, and make it to the end — before your lives run out.
 
