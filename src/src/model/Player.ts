@@ -72,6 +72,7 @@ export class Player extends Actor {
         level.onSoundCallback?.('jump');
       } else {
         this.speed.y = 0;
+        
       }
     } else {
       this.position = newPosition;
