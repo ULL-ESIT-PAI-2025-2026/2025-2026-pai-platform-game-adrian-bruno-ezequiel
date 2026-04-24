@@ -143,6 +143,23 @@ export class Level {
   getNumberOfCollectedCoins() {
     return this.numberOfCollectedCoins;
   }
+
+  /**
+   * @desc Gets the current number of lives.
+   * @returns Current life count
+   */
+  getLives(): number {
+    return this.lives;
+  }
+
+  /**
+   * @desc Sets the current number of lives and updates the display.
+   * @param newLives - New life count to set
+   */
+  setLives(newLives: number): void {
+    this.lives = newLives;
+    this.updateLivesDisplay(newLives);
+  }
   
   /**
    * @desc Parses the level string and builds the grid and actors.
@@ -202,6 +219,20 @@ export class Level {
     return this.actors.find((other) =>
       other !== actor && actor.overlaps(other)
     );
+  }
+
+  /**
+   * @desc Updates the lives display UI elements based on current lives count.
+   * @param currentLives - The current number of lives the player has
+   */
+  updateLivesDisplay(currentLives: number): void {
+    // Remove all existing lives UI elements
+    this.uiElements = this.uiElements.filter(element => element.getType() !== 'lives');
+    
+    // Create new lives display UI elements
+    for (let i = 0, x = 0; i < currentLives; i++, x += 1.2) {
+      this.uiElements.push(new Lives(new Vector(x + 1, 1)));
+    }
   }
 
   /**

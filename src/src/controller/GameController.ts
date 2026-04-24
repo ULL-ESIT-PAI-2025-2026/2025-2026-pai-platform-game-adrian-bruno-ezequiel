@@ -97,10 +97,8 @@ export class GameController {
    */
   private onLevelFinished(status: string): void {
     this.view.unmount();
-
     if (status === 'lost') {
       this.model.loseLife();
-
       if (!this.model.getHasLivesRemaining()) {
         this.audioManager.play('gameOver')
         // Game over → restart from level 0 with 3 lives
@@ -108,6 +106,7 @@ export class GameController {
       } else {
         // Retry same level with one fewer life
         const level = this.model.reloadCurrentLevel();
+        level.setLives(this.model.getLives());
         this.view.mount(level.getWidth(), level.getHeight());
         this.runAnimation();
       }

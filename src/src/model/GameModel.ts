@@ -98,7 +98,7 @@ export class GameModel {
    */
   loadLevel(index: number): Level {
     this.currentLevelIndex = index;
-    this.currentLevel = new Level(this.plans[index], 3);
+    this.currentLevel = new Level(this.plans[index], this.lives);
     return this.currentLevel;
   }
 
@@ -125,7 +125,9 @@ export class GameModel {
    */
   reset(lives: number = 3): Level {
     this.lives = lives;
-    return this.loadLevel(0);
+    const level = this.loadLevel(0);
+    level.setLives(lives);
+    return level;
   }
 
   /**
@@ -140,6 +142,7 @@ export class GameModel {
   /** @desc Reduces the player's lives by one. */
   loseLife(): void {
     this.lives = Math.max(0, this.lives - 1);
+    this.currentLevel?.setLives(this.lives);
   }
 
   /**
