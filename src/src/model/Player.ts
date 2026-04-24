@@ -69,6 +69,7 @@ export class Player extends Actor {
       level.playerTouched(obstacle);
       if (keys.up && this.speed.y > 0) {
         this.speed.y -= jumpSpeed;
+        level.onSoundCallback?.('jump');
       } else {
         this.speed.y = 0;
       }

@@ -24,18 +24,18 @@ export class AudioManager {
   private sound: HTMLAudioElement;
   private music: HTMLAudioElement;
 
-  private musicSource: string = 'assets/sound/201-overworld-bgm.mp3';
+  private musicSource: string = 'assets/sound/overworld.mp3';
 
   /** @desc Creates a new AudioManager instance and initializes audio elements. */
   constructor() {
-    this.music = document.getElementById('music') as HTMLAudioElement;
-    this.sound = document.getElementById('sound') as HTMLAudioElement;
+    this.music = document.getElementById('music')! as HTMLAudioElement;
+    this.sound = document.getElementById('sound')! as HTMLAudioElement;
 
-    this.map.set('coin', 'assets/sound/smb_coin.wav');
-    this.map.set('jump', 'assets/sound/smb_jump-small.wav');
-    this.map.set('die', 'assets/sound/smb_mariodie.wav');
-    this.map.set('levelClear', 'assets/sound/smb_stage_clear.wav');
-    this.map.set('gameOver', 'assets/sound/smb_gameover.wav');
+    this.map.set('coin', 'assets/sound/coin.wav');
+    this.map.set('jump', 'assets/sound/jump-small.wav');
+    this.map.set('die', 'assets/sound/mario-die.wav');
+    this.map.set('levelClear', 'assets/sound/stage-clear.wav');
+    this.map.set('gameOver', 'assets/sound/game-over.wav');
   }
 
   /**
