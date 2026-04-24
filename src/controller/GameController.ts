@@ -85,6 +85,10 @@ export class GameController {
     const level = this.model.reset(lives); // resets lives counter to `lives`
     // reset() always goes to index 0; for other indices use loadLevel directly
     const currentLevel = index === 0 ? level : this.model.loadLevel(index);
+    this.model.bindSoundEvent((soundType: SoundType) => {
+      this.audioManager.play(soundType);
+      console.log('holaa');
+    });
     this.view.mount(currentLevel.getWidth(), currentLevel.getHeight());
     this.runAnimation();
   }
@@ -101,23 +105,23 @@ export class GameController {
         this.audioManager.play('gameOver')
         // Game over → restart from level 0 with 3 lives
         setTimeout(() => this.startLevel(0, 3), 0);
-      } else {
-        // Retry same level with one fewer life
-        const level = this.model.reloadCurrentLevel();
-        level.setLives(this.model.getLives());
-        this.view.mount(level.getWidth(), level.getHeight());
-        this.runAnimation();
+        return;
       }
-    } else {
-      if (this.model.getIsLastLevel()) {
-        this.audioManager.play('levelClear')
-        setTimeout(() => this.startLevel(0, 3), 0);
-      } else {
-        const level = this.model.loadNextLevel();
-        this.view.mount(level.getWidth(), level.getHeight());
-        this.runAnimation();
-      }
+      // Retry same level with one fewer life
+      const level = this.model.reloadCurrentLevel();
+      level.setLives(this.model.getLives());
+      this.view.mount(level.getWidth(), level.getHeight());
+      this.runAnimation();
+      return;
     }
+    if (this.model.getIsLastLevel()) {
+      this.audioManager.play('levelClear')
+      setTimeout(() => this.startLevel(0, 3), 0);
+      return;
+    }
+    const level = this.model.loadNextLevel();
+    this.view.mount(level.getWidth(), level.getHeight());
+    this.runAnimation();
   }
 
   /** @desc Starts the main animation loop using requestAnimationFrame. */
@@ -125,49 +129,51 @@ export class GameController {
     this.lastTime = null;
 
     const frame = (time: number) => {
-      if (this.lastTime !== null) { //primera iteracion
-        const step = Math.min(time - this.lastTime, 100) / 1000;
+      if (this.lastTime === null) {
+          this.lastTime = time;
+          this.animationFrameId = requestAnimationFrame(frame);
+          return;
+      } //primera iteracion
+      const step = Math.min(time - this.lastTime, 100) / 1000;
 
-        if (!this.keys['esc']) {
-          this.model.animate(step, this.keys);
-          const currentLevel = this.model.getCurrentLevel();
+      if (this.keys['esc']) return;
+      this.model.animate(step, this.keys);
+      const currentLevel = this.model.getCurrentLevel();
 
-          const actorsView: ActorView[] = currentLevel.getActors().map((actor: Actor) => ({
-            type: actor.getType() as ActorType,
-            position: actor.getPosition(),
-            size: actor.getSize()
-          }));
+      const actorsView: ActorView[] = currentLevel.getActors().map((actor: Actor) => ({
+        type: actor.getType() as ActorType,
+        position: actor.getPosition(),
+        size: actor.getSize()
+      }));
 
-          const uiElementsView: ActorView[] = currentLevel.getUiElements().map((actor: Actor) => ({
-            type: actor.getType() as ActorType,
-            position: actor.getPosition(),
-            size: actor.getSize()
-          }));
-          const playerView: PlayerView = {
-            position: currentLevel.getPlayer().getPosition(),
-            size: currentLevel.getPlayer().getSize(),
-            speed: currentLevel.getPlayer().getSpeed()
-          };
-          this.view.drawFrame(
-            step,
-            currentLevel.getPlayer().getPosition(),
-            actorsView,
-            uiElementsView,
-            playerView,
-            currentLevel.getWidth(),
-            currentLevel.getHeight(),
-            currentLevel.getNumberOfCoins(),
-            currentLevel.getNumberOfCollectedCoins(),
-            currentLevel.getStatus(),
-            currentLevel.getGrid(),
-          );
+      const uiElementsView: ActorView[] = currentLevel.getUiElements().map((actor: Actor) => ({
+        type: actor.getType() as ActorType,
+        position: actor.getPosition(),
+        size: actor.getSize()
+      }));
+      const playerView: PlayerView = {
+        position: currentLevel.getPlayer().getPosition(),
+        size: currentLevel.getPlayer().getSize(),
+        speed: currentLevel.getPlayer().getSpeed()
+      };
+      this.view.drawFrame(
+        step,
+        currentLevel.getPlayer().getPosition(),
+        actorsView,
+        uiElementsView,
+        playerView,
+        currentLevel.getWidth(),
+        currentLevel.getHeight(),
+        currentLevel.getNumberOfCoins(),
+        currentLevel.getNumberOfCollectedCoins(),
+        currentLevel.getStatus(),
+        currentLevel.getGrid(),
+      );
 
-          const status = currentLevel.getStatus();
-          if (currentLevel.isFinished() && status) {
-            this.onLevelFinished(status);
-            return; // stop this animation loop; a new one starts in onLevelFinished
-          }
-        }
+      const status = currentLevel.getStatus();
+      if (currentLevel.isFinished() && status) {
+        this.onLevelFinished(status);
+        return; // stop this animation loop; a new one starts in onLevelFinished
       }
 
       this.lastTime = time;
@@ -193,7 +199,9 @@ export class GameController {
 
       const down = event.type === 'keydown';
       if (action === 'esc') {
-        if (!down) this.keys['esc'] = !this.keys['esc'];
+        if (!down) {
+          this.keys['esc'] = !this.keys['esc'];
+        }
       } else {
         this.keys[action] = down;
       }
