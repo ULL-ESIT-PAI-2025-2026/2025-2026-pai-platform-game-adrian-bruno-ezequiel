@@ -55,9 +55,6 @@ export class GameController {
 
     this.start();
     this.audioManager = new AudioManager();
-    this.model.bindSoundEvent((soundType: SoundType) => {
-      this.audioManager.play(soundType);
-    });
     window.addEventListener('keydown', () => {
       this.audioManager.playBackground();
     }, { once: true });
@@ -81,12 +78,13 @@ export class GameController {
    * @param lives - Number of lives to start with
    */
   private startLevel(index: number, lives: number): void {
+    
+
     this.stopAnimation();
 
     const level = this.model.reset(lives); // resets lives counter to `lives`
     // reset() always goes to index 0; for other indices use loadLevel directly
     const currentLevel = index === 0 ? level : this.model.loadLevel(index);
-
     this.view.mount(currentLevel.getWidth(), currentLevel.getHeight());
     this.runAnimation();
   }
