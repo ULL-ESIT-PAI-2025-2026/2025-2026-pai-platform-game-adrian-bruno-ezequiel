@@ -89,7 +89,7 @@ npm install
 Compile TypeScript and start the dev server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 Then open your browser at `http://localhost:8080` (or whichever port the dev server uses).
@@ -99,11 +99,11 @@ Then open your browser at `http://localhost:8080` (or whichever port the dev ser
 Alternatively, compile and run separately:
 
 ```bash
-npm run build:watch
+npm run tsc:watch
 ```
 
 ```bash
-npm run build
+npm run dev:server
 ```
 
 ## Controls
