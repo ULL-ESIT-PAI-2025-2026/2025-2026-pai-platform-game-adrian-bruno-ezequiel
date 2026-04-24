@@ -11,9 +11,9 @@
  * @desc Player
  */
 
-import { Level } from "./Level.js";
-import { Actor } from "./Actor.js";
-import { Vector } from "../Vector.js";
+import { Level } from './Level.js';
+import { Actor } from './Actor.js';
+import { Vector } from '../Vector.js';
 
 /** @classdesc Represents the playable character in the game. */
 export class Player extends Actor {
@@ -28,7 +28,7 @@ export class Player extends Actor {
     this.position = pos.plus(new Vector(0, -0.5));
     this.size = new Vector(0.8, 1.5);
     this.speed = new Vector(0, 0);
-    this.type = "player";
+    this.type = 'player';
   }
 
   /**
@@ -93,7 +93,7 @@ export class Player extends Actor {
     }
 
     // Losing animation
-    if (level.getStatus() === "lost") {
+    if (level.getStatus() === 'lost') {
       const position = this.getPosition();
       position.y += step;
       this.setPosition(position);

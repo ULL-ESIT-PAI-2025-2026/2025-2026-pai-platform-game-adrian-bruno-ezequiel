@@ -11,8 +11,8 @@
  * @desc Lives
  */
 
-import { Actor } from "./Actor.js";
-import { Vector } from "../Vector.js";
+import { Actor } from './Actor.js';
+import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a UI element that displays the player's remaining lives. */
 export class Lives extends Actor {
@@ -25,7 +25,7 @@ export class Lives extends Actor {
     super();
     this.position = pos;
     this.size = new Vector(1, 1);
-    this.type = "lives";
+    this.type = 'lives';
   }
 
   /** @desc Updates the Lives UI element (no behavior needed). */

@@ -11,11 +11,11 @@
  * @desc Actor
  */
 
-import { Level } from "./Level.js";
-import { Vector } from "../Vector.js";
+import { Level } from './Level.js';
+import { Vector } from '../Vector.js';
 
 
-export type ActorType = "player" | "coin" | "lava" | "score" | "lives" | '';
+export type ActorType = 'player' | 'coin' | 'lava' | 'score' | 'lives' | '';
 export type KeyMap = { [key: string]: boolean };
 
 /** @classdesc Provides common functionality for all game actors. */

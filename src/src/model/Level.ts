@@ -22,14 +22,6 @@ import  { Actor, ActorType } from './Actor.js';
 
 export type Status = 'lost' | 'won' | null;
 
-const ACTOR_CHARS: { [key: string]: any } = {
-  '@': Player,  // Player character
-  'o': Coin,    // Collectible coin
-  '=': Lava,    // Horizontal moving lava
-  '|': Lava,    // Vertical moving lava
-  'v': Lava,    // Dripping lava
-};
-
 /** @classdesc Represents a single game level containing the game world, actors, and game state. */
 export class Level {
   private width: number;
@@ -43,6 +35,14 @@ export class Level {
   private numberOfCoins: number;
   private numberOfCollectedCoins: number;
   onSoundCallback?: (soundType: SoundType) => void;
+
+  private readonly ACTOR_CHARS: { [key: string]: any } = {
+    '@': Player,  // Player character
+    'o': Coin,    // Collectible coin
+    '=': Lava,    // Horizontal moving lava
+    '|': Lava,    // Vertical moving lava
+    'v': Lava,    // Dripping lava
+  };
 
   /**
    * @desc Creates a new Level instance from a level plan.
@@ -155,7 +155,7 @@ export class Level {
       for (let x = 0; x < this.width; x++) {
         const ch = line[x];
         let fieldType = null;
-        const Actor = ACTOR_CHARS[ch];
+        const Actor = this.ACTOR_CHARS[ch];
         if (Actor) {
           this.actors.push(new Actor(new Vector(x, y), ch));
         } else if (ch === 'x') {
@@ -237,7 +237,7 @@ export class Level {
       
       this.numberOfCollectedCoins += 1;
       this.actors = this.actors.filter((other) => other !== actor);
-      if (this.numberOfCoins == this.numberOfCollectedCoins) {
+      if (this.numberOfCoins === this.numberOfCollectedCoins) {
         this.onSoundCallback?.('levelClear');
         this.status = 'won';
         this.finishDelay = 1;

@@ -11,17 +11,17 @@
  * @desc GameView
  */
 
-import { Vector } from "../Vector.js";
-import { Status } from "../model/Level.js";
-import { ActorView } from "./ActorView.js";
-import { PlayerView } from "./PlayerView.js";
-import { ActorType } from "../model/Actor.js";
-import { CanvasDisplay } from "./CanvasDisplay.js";
+import { Vector } from '../Vector.js';
+import { Status } from '../model/Level.js';
+import { ActorView } from './ActorView.js';
+import { PlayerView } from './PlayerView.js';
+import { ActorType } from '../model/Actor.js';
+import { CanvasDisplay } from './CanvasDisplay.js';
 
 // Re-export display types for convenience
 export { CanvasDisplay };
 
-export type DisplayType = "canvas" | "dom";
+export type DisplayType = 'canvas' | 'dom';
 
 /** @classdesc Single entry-point to the view layer. */
 export class GameView {
@@ -76,7 +76,7 @@ export class GameView {
     status: Status,
     grid: ActorType[][]
   ): void {
-    if (!this.canvasDisplay) throw new Error("GameView: no display mounted");
+    if (!this.canvasDisplay) throw new Error('GameView: no display mounted');
     this.canvasDisplay.drawFrame(
       step,
       center,

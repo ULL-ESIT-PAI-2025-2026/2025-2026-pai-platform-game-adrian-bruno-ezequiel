@@ -11,15 +11,15 @@
  * @desc Model
  */
 
-import { Coin } from "./Coin.js";
-import { Lava } from "./Lava.js";
-import { Level } from "./Level.js";
-import { Lives } from "./Lives.js";
-import { Score } from "./Score.js";
-import { Player } from "./Player.js";
-import { Vector } from "../Vector.js";
-import { SoundType } from "../view/audio.js";
-import { Actor, ActorType, KeyMap } from "./Actor.js";
+import { Coin } from './Coin.js';
+import { Lava } from './Lava.js';
+import { Level } from './Level.js';
+import { Lives } from './Lives.js';
+import { Score } from './Score.js';
+import { Player } from './Player.js';
+import { Vector } from '../Vector.js';
+import { SoundType } from '../view/audio.js';
+import { Actor, ActorType, KeyMap } from './Actor.js';
 
 // Re-export all model types so the rest of the app only needs to import from GameModel
 export { Level, Actor, ActorType, KeyMap, Vector, Player, Coin, Lava, Lives, Score };
@@ -47,7 +47,7 @@ export class GameModel {
    * @throws {Error} If no level has been loaded yet
    */
   getCurrentLevel(): Level {
-    if (!this.currentLevel) throw new Error("No level loaded");
+    if (!this.currentLevel) throw new Error('No level loaded');
     return this.currentLevel;
   }
 

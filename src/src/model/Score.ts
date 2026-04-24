@@ -11,8 +11,8 @@
  * @desc Score
  */
 
-import { Vector } from "../Vector.js";
-import { Actor } from "./Actor.js";
+import { Actor } from './Actor.js';
+import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a UI element that displays the player's current score. */
 export class Score extends Actor {
@@ -27,7 +27,7 @@ export class Score extends Actor {
     super();
     this.position = pos;
     this.size = new Vector(1, 1);
-    this.type = "score";
+    this.type = 'score';
   }
 
   /**

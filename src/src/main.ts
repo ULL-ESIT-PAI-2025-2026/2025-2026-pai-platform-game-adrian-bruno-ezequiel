@@ -11,8 +11,8 @@
  * @desc Main
  */
 
-import { GAME_LEVELS } from "./GameLevels.js";
-import { GameController } from "./controller/GameController.js";
+import { GAME_LEVELS } from './GameLevels.js';
+import { GameController } from './controller/GameController.js';
 
 /** @desc Entry point of the game application. */
 function main() {

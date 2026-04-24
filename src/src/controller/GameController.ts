@@ -11,12 +11,12 @@
  * @desc Controller
  */
 
-import { Actor } from "../model/GameModel.js";
-import { ActorView } from "../view/ActorView.js";
-import { PlayerView } from "../view/PlayerView.js";
-import { AudioManager, SoundType } from "../view/audio.js";
-import { GameView, DisplayType } from "../view/GameView.js";
-import { ActorType, GameModel, KeyMap } from "../model/GameModel.js";
+import { Actor } from '../model/GameModel.js';
+import { ActorView } from '../view/ActorView.js';
+import { PlayerView } from '../view/PlayerView.js';
+import { AudioManager, SoundType } from '../view/audio.js';
+import { GameView, DisplayType } from '../view/GameView.js';
+import { ActorType, GameModel, KeyMap } from '../model/GameModel.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
 export class GameController {
@@ -29,10 +29,10 @@ export class GameController {
   private keyHandlerCleanup: (() => void) | null = null;
 
   private static readonly KEY_MAP: Record<number, string> = {
-    27: "esc",   // Escape key
-    37: "left",  // Left arrow key
-    38: "up",    // Up arrow key
-    39: "right", // Right arrow key
+    27: 'esc',   // Escape key
+    37: 'left',  // Left arrow key
+    38: 'up',    // Up arrow key
+    39: 'right', // Right arrow key
   };
   
   private audioManager: AudioManager;
@@ -46,7 +46,7 @@ export class GameController {
   constructor(
     plans: string[][],
     parent: HTMLElement = document.body,
-    displayType: DisplayType = "canvas"
+    displayType: DisplayType = 'canvas'
   ) {
     this.model = new GameModel(plans);
     this.view  = new GameView();
@@ -58,7 +58,7 @@ export class GameController {
     this.model.bindSoundEvent((soundType: SoundType) => {
       this.audioManager.play(soundType);
     });
-    window.addEventListener("keydown", () => {
+    window.addEventListener('keydown', () => {
       this.audioManager.playBackground();
     }, { once: true });
   }
@@ -98,7 +98,7 @@ export class GameController {
   private onLevelFinished(status: string): void {
     this.view.unmount();
 
-    if (status === "lost") {
+    if (status === 'lost') {
       this.model.loseLife();
 
       if (!this.model.getHasLivesRemaining()) {
@@ -131,7 +131,7 @@ export class GameController {
       if (this.lastTime !== null) { //primera iteracion
         const step = Math.min(time - this.lastTime, 100) / 1000;
 
-        if (!this.keys["esc"]) {
+        if (!this.keys['esc']) {
           this.model.animate(step, this.keys);
           const currentLevel = this.model.getCurrentLevel();
 
@@ -194,20 +194,20 @@ export class GameController {
       const action = GameController.KEY_MAP[event.keyCode];
       if (!action) return;
 
-      const down = event.type === "keydown";
-      if (action === "esc") {
-        if (!down) this.keys["esc"] = !this.keys["esc"];
+      const down = event.type === 'keydown';
+      if (action === 'esc') {
+        if (!down) this.keys['esc'] = !this.keys['esc'];
       } else {
         this.keys[action] = down;
       }
       event.preventDefault();
     };
 
-    window.addEventListener("keydown", handler);
-    window.addEventListener("keyup", handler);
+    window.addEventListener('keydown', handler);
+    window.addEventListener('keyup', handler);
     this.keyHandlerCleanup = () => {
-      window.removeEventListener("keydown", handler);
-      window.removeEventListener("keyup", handler);
+      window.removeEventListener('keydown', handler);
+      window.removeEventListener('keyup', handler);
     };
   }
 }

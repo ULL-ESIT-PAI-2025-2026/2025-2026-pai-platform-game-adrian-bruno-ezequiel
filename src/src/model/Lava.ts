@@ -11,9 +11,9 @@
  * @desc Lava
  */
 
-import { Vector } from "../Vector.js";
-import { Actor } from "./Actor.js";
-import { Level } from "./Level.js";
+import { Actor } from './Actor.js';
+import { Level } from './Level.js';
+import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a hazardous lava element in the game world. */
 export class Lava extends Actor {
@@ -29,20 +29,20 @@ export class Lava extends Actor {
     super();
     this.position = pos;
     this.size = new Vector(1, 1);
-    if (ch === "=") {
+    if (ch === '=') {
       this.speed = new Vector(2, 0);
       this.repeatPos = new Vector(0, 0);
-    } else if (ch === "|") {
+    } else if (ch === '|') {
       this.speed = new Vector(0, 2);
       this.repeatPos = new Vector(0, 0);
-    } else if (ch === "v") {
+    } else if (ch === 'v') {
       this.speed = new Vector(0, 3);
       this.repeatPos = this.getPosition();
     } else {
       this.speed = new Vector(0, 0);
       this.repeatPos = new Vector(0, 0);
     }
-    this.setType("lava");
+    this.setType('lava');
   }
 
   /**

@@ -46,7 +46,7 @@ export class AudioManager {
     this.sound.src = this.map.get(soundType)!;
 
     this.sound.play().catch((err: any) => {
-      if (err?.name === "NotAllowedError") {
+      if (err?.name === 'NotAllowedError') {
         // Browser requires user interaction before playing audio
         // Silently ignore to prevent console errors
         return;

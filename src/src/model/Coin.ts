@@ -11,8 +11,8 @@
  * @desc Coin
  */
 
-import { Actor } from "./Actor.js";
-import { Vector } from "../Vector.js";
+import { Actor } from './Actor.js';
+import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a collectible coin in the game world. */
 export class Coin extends Actor {
@@ -28,7 +28,7 @@ export class Coin extends Actor {
     this.position = this.basePos;
     this.size = new Vector(0.6, 0.6);
     this.wobble = Math.random() * Math.PI * 2;
-    this.setType("coin");
+    this.setType('coin');
   }
 
   /**
