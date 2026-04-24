@@ -146,8 +146,6 @@ The project follows an **MVC pattern**:
 - Bruno Morales Hernández (morales.hernandez.28@ull.edu.es)
 - Ezequiel Juan Canale Oliva (ezequiel.juan.11@ull.edu.es)
 
----
-
 ## License
 
 MIT License - See LICENSE file for details
