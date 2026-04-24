@@ -11,11 +11,11 @@
  * @desc CanvasDisplay
  */
 
-import { Vector } from "../Vector.js";
-import { Status } from "../model/Level.js";
-import { ActorView } from "./ActorView.js";
-import { PlayerView } from "./PlayerView.js";
-import { ActorType } from "../model/Actor.js";
+import { Vector } from '../Vector.js';
+import { Status } from '../model/Level.js';
+import { ActorView } from './ActorView.js';
+import { PlayerView } from './PlayerView.js';
+import { ActorType } from '../model/Actor.js';
 
 /** @classdesc Handles all canvas-based rendering for the game using the HTML5 Canvas API. */
 export class CanvasDisplay {
@@ -26,6 +26,7 @@ export class CanvasDisplay {
   private viewport;
   private otherSprites;
   private playerSprite;
+  private livesSprite;
 
   /**
    * @desc Creates a new CanvasDisplay instance.
@@ -34,7 +35,7 @@ export class CanvasDisplay {
    * @param height - World height in grid units
    */
   constructor(private canvas: HTMLCanvasElement, width: number, height: number) {
-    this.context = this.canvas.getContext("2d")!;
+    this.context = this.canvas.getContext('2d')!;
     this.canvas.width = Math.min(800, width * this.scale);
     this.canvas.height = Math.min(550, height * this.scale);
     this.viewport = {
@@ -43,10 +44,12 @@ export class CanvasDisplay {
       width: this.canvas.width / this.scale,
       height: this.canvas.height / this.scale,
     }
-    this.otherSprites = document.createElement("img");
+    this.otherSprites = document.createElement('img');
     this.otherSprites.src = '/assets/img/sprites.png'
-    this.playerSprite = document.createElement("img");
-    this.playerSprite.src = "/assets/img/player.png";
+    this.playerSprite = document.createElement('img');
+    this.playerSprite.src = '/assets/img/player.png';
+    this.livesSprite = document.createElement('img');
+    this.livesSprite.src = '/assets/img/lives.png';
   }
 
   /**
@@ -58,7 +61,6 @@ export class CanvasDisplay {
   updateViewport(center: Vector, worldWith: number, worldHeight: number) {
     const viewport = this.viewport;
     const margin = viewport.width / 3;
-    //const center: Vector = this.level.getPlayer()?.getPosition().plus(this.level.getPlayer()?.getSize().times(0.5))!;
 
     if (center.x < viewport.left + margin) {
       viewport.left = Math.max(center.x - margin, 0);
@@ -77,12 +79,12 @@ export class CanvasDisplay {
    * @param status - Current level status (won, lost, or null)
    */
   clearDisplay(status: Status) {
-    if (status === "won") {
-      this.context.fillStyle = "rgb(68, 191, 255)";
-    } else if (status === "lost") {
-      this.context.fillStyle = "rgb(44, 136, 214)";
+    if (status === 'won') {
+      this.context.fillStyle = 'rgb(68, 191, 255)';
+    } else if (status === 'lost') {
+      this.context.fillStyle = 'rgb(44, 136, 214)';
     } else {
-      this.context.fillStyle = "rgb(52, 166, 251)";
+      this.context.fillStyle = 'rgb(52, 166, 251)';
     }
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
@@ -92,32 +94,32 @@ export class CanvasDisplay {
    * @param grid - 2D array representing the level's static tiles
    */
   drawBackground(grid: ActorType[][]) {
-  const xStart = Math.floor(this.viewport.left);
-  const xEnd = Math.ceil(this.viewport.left + this.viewport.width);
-  const yStart = Math.floor(this.viewport.top);
-  const yEnd = Math.ceil(this.viewport.top + this.viewport.height);
+    const xStart = Math.floor(this.viewport.left);
+    const xEnd = Math.ceil(this.viewport.left + this.viewport.width);
+    const yStart = Math.floor(this.viewport.top);
+    const yEnd = Math.ceil(this.viewport.top + this.viewport.height);
 
-  for (let y = yStart; y < yEnd; y++) {
-    for (let x = xStart; x < xEnd; x++) {
-      const tile = grid[y]?.[x];
-      if (!tile) continue;
+    for (let y = yStart; y < yEnd; y++) {
+      for (let x = xStart; x < xEnd; x++) {
+        const tile = grid[y]?.[x];
+        if (!tile) continue;
 
-      const screenPos = this.worldToCanvas(new Vector(x, y));
+        const screenPos = this.worldToCanvas(new Vector(x, y));
 
-      const tileX = tile === "lava" ? this.scale : 0;
+        const tileX = tile === 'lava' ? this.scale : 0;
 
-      this.context.drawImage(
-        this.otherSprites,
-        tileX, 0,
-        this.scale, this.scale,
-        screenPos.x,
-        screenPos.y,
-        this.scale,
-        this.scale
-      );
+        this.context.drawImage(
+          this.otherSprites,
+          tileX, 0,
+          this.scale, this.scale,
+          screenPos.x,
+          screenPos.y,
+          this.scale,
+          this.scale
+        );
+      }
     }
   }
-}
 
   /**
    * @desc Converts world coordinates to canvas pixel coordinates.
@@ -146,49 +148,47 @@ export class CanvasDisplay {
    * @desc Draws the player character with animation and facing direction.
    * @param player - Player view data containing position, size, and speed
    */
-  drawPlayer(
-    player: PlayerView
-  ) {
-  const playerXOverlap = 4;
-  let sprite = 8;
+  drawPlayer(player: PlayerView) {
+    const playerXOverlap = 4;
+    let sprite = 8;
 
-  let x = this.worldToCanvas(player.position).x;
-  let y = this.worldToCanvas(player.position).y;
+    let x = this.worldToCanvas(player.position).x;
+    let y = this.worldToCanvas(player.position).y;
 
-  let width = player.size.x * this.scale;
-  let height = player.size.y * this.scale;
+    let width = player.size.x * this.scale;
+    let height = player.size.y * this.scale;
 
-  width += playerXOverlap * 2;
-  x -= playerXOverlap;
+    width += playerXOverlap * 2;
+    x -= playerXOverlap;
 
-  if (player.speed.x !== 0) this.flipPlayer = player.speed.x < 0;
+    if (player.speed.x !== 0) this.flipPlayer = player.speed.x < 0;
 
-  if (player.speed.y !== 0) {
-    sprite = 9;
-  } else if (player.speed.x !== 0) {
-    sprite = Math.floor(this.animationTime * 12) % 8;
+    if (player.speed.y !== 0) {
+      sprite = 9;
+    } else if (player.speed.x !== 0) {
+      sprite = Math.floor(this.animationTime * 12) % 8;
+    }
+
+    this.context.save();
+
+    if (this.flipPlayer) {
+      this.flipHorizontally(this.context, x + width / 2);
+    }
+
+    this.context.drawImage(
+      this.playerSprite,
+      sprite * width,
+      0,
+      width,
+      height,
+      x,
+      y,
+      width,
+      height
+    );
+
+    this.context.restore();
   }
-
-  this.context.save();
-
-  if (this.flipPlayer) {
-    this.flipHorizontally(this.context, x + width / 2);
-  }
-
-  this.context.drawImage(
-    this.playerSprite,
-    sprite * width,
-    0,
-    width,
-    height,
-    x,
-    y,
-    width,
-    height
-  );
-
-  this.context.restore();
-}
 
   /**
    * @desc Draws all dynamic actors (coins, lava) and UI elements (score, lives).
@@ -198,62 +198,62 @@ export class CanvasDisplay {
    * @param numberOfCollectedCoints - Coins collected so far
    */
   drawActors(
-  actors: ActorView[],
-  uiElements: ActorView[],
-  numberOfCoins: number,
-  numberOfCollectedCoints: number
-) {
-  const sprites = this.otherSprites;
+    actors: ActorView[],
+    uiElements: ActorView[],
+    numberOfCoins: number,
+    numberOfCollectedCoints: number
+  ) {
+    const sprites = this.otherSprites;
 
-  actors.forEach((actor: ActorView) => {
-    const width = actor.size.x * this.scale;
-    const height = actor.size.y * this.scale;
+    actors.forEach((actor: ActorView) => {
+      const width = actor.size.x * this.scale;
+      const height = actor.size.y * this.scale;
 
-    const worldPos = actor.position;
-    const screenPos = this.worldToCanvas(worldPos);
-    const tileX = (actor.type === "coin" ? 2 : 1) * this.scale;
-    if (actor.type === "player") return;
-    this.context.drawImage(
-      sprites,
-      tileX,
-      0,
-      width,
-      height,
-      screenPos.x,
-      screenPos.y,
-      width,
-      height
-    );
-  });
-
-  uiElements.forEach((actor: ActorView) => {
-    const width = actor.size.x * this.scale;
-    const height = actor.size.y * this.scale;
-
-    const x = actor.position.x * this.scale;
-    const y = actor.position.y * this.scale;
-
-    if (actor.type === "lives") {
-      this.context.drawImage(sprites, 0, 0, width, height, x, y, width, height);
-    } else if (actor.type === "score") {
-      this.context.font = "24px Monospace";
-      this.context.fillStyle = "white";
-      this.context.shadowColor = "lightgrey";
-
-      this.context.strokeText(
-        `${numberOfCollectedCoints}/${numberOfCoins}`,
-        x + this.context.canvas.clientWidth - this.scale * 4,
-        y + this.scale
+      const worldPos = actor.position;
+      const screenPos = this.worldToCanvas(worldPos);
+      const tileX = (actor.type === 'coin' ? 2 : 1) * this.scale;
+      if (actor.type === 'player') return;
+      this.context.drawImage(
+        sprites,
+        tileX,
+        0,
+        width,
+        height,
+        screenPos.x,
+        screenPos.y,
+        width,
+        height
       );
+    });
 
-      this.context.fillText(
-        `${numberOfCollectedCoints}/${numberOfCoins}`,
-        x + this.context.canvas.clientWidth - this.scale * 4,
-        y + this.scale
-      );
-    }
-  });
-}
+    uiElements.forEach((actor: ActorView) => {
+      const width = actor.size.x * this.scale;
+      const height = actor.size.y * this.scale;
+
+      const x = actor.position.x * this.scale;
+      const y = actor.position.y * this.scale;
+
+      if (actor.type === 'lives') {
+        this.context.drawImage(this.livesSprite, 0, 0, width, height, x, y, width, height);
+      } else if (actor.type === 'score') {
+        this.context.font = '24px Monospace';
+        this.context.fillStyle = 'white';
+        this.context.shadowColor = 'lightgrey';
+
+        this.context.strokeText(
+          `${numberOfCollectedCoints}/${numberOfCoins}`,
+          x + this.context.canvas.clientWidth - this.scale * 4,
+          y + this.scale
+        );
+
+        this.context.fillText(
+          `${numberOfCollectedCoints}/${numberOfCoins}`,
+          x + this.context.canvas.clientWidth - this.scale * 4,
+          y + this.scale
+        );
+      }
+    });
+  }
 
   /**
    * @desc Renders a complete frame of the game.
