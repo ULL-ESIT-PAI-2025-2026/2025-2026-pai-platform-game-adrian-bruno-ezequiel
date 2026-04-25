@@ -11,7 +11,8 @@
  * @desc Lives
  */
 
-import { Actor } from './Actor.js';
+import { Actor, KeyMap } from './Actor.js';
+import { Level } from './Level.js';
 import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a UI element that displays the player's remaining lives. */
@@ -27,6 +28,11 @@ export class Lives extends Actor {
     this.type = 'lives';
   }
 
-  /** @desc Updates the Lives UI element (no behavior needed). */
-  act() {}
+  /**
+   * @desc Updates the Lives UI element (explicit no-op).
+   * @param step - Optional time step in seconds (unused by lives)
+   * @param level - Optional level reference (unused by lives)
+   * @param keys - Optional keyboard state map (unused by lives)
+   */
+  act(step?: number, level?: Level, keys?: KeyMap): void {}
 }

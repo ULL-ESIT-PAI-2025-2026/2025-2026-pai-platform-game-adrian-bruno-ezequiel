@@ -11,7 +11,7 @@
  * @desc Lava
  */
 
-import { Actor } from './Actor.js';
+import { Actor, KeyMap } from './Actor.js';
 import { Level } from './Level.js';
 import { Vector } from '../Vector.js';
 
@@ -47,10 +47,12 @@ export class Lava extends Actor {
 
   /**
    * @desc Updates the lava's position based on its movement pattern.
-   * @param step - Time step in seconds since the last frame
-   * @param level - Reference to the current level for collision detection
+   * @param step - Optional time step in seconds since the last frame
+   * @param level - Optional level reference for collision detection
+   * @param keys - Optional keyboard state map (unused by lava)
    */
-  act(step: number, level: Level) {
+  act(step?: number, level?: Level, keys?: KeyMap) {
+    if (step === undefined || level === undefined) return;
     const newPos = this.getPosition().plus(this.speed.times(step));
     if (!level.obstacleAt(newPos, this.getSize())) {
       this.position = newPos;

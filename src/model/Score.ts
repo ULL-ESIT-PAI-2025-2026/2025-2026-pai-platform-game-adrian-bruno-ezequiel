@@ -11,8 +11,9 @@
  * @desc Score
  */
 
-import { Actor } from './Actor.js';
+import { Actor, KeyMap } from './Actor.js';
 import { Vector } from '../Vector.js';
+import { Level } from './Level.js';
 
 /** @classdesc Represents a UI element that displays the player's current score. */
 export class Score extends Actor {
@@ -32,9 +33,11 @@ export class Score extends Actor {
 
   /**
    * @desc Updates the Score UI element's animation state.
-   * @param step - Time step in seconds since the last frame (optional)
+   * @param step - Optional time step in seconds since the last frame
+   * @param level - Optional level reference (unused by score)
+   * @param keys - Optional keyboard state map (unused by score)
    */
-  act(step?: number) {
+  act(step?: number, level?: Level, keys?: KeyMap): void {
     if (this.isAnimating && step) {
       this.animationTimer += step;
       if (this.animationTimer >= 0.3) {

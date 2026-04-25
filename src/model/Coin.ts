@@ -11,8 +11,9 @@
  * @desc Coin
  */
 
-import { Actor } from './Actor.js';
+import { Actor, KeyMap } from './Actor.js';
 import { Vector } from '../Vector.js';
+import { Level } from './Level.js';
 
 /** @classdesc Represents a collectible coin in the game world. */
 export class Coin extends Actor {
@@ -33,9 +34,12 @@ export class Coin extends Actor {
 
   /**
    * @desc Updates the coin's animation state for the current frame.
-   * @param step - Time step in seconds since the last frame
+   * @param step - Optional time step in seconds since the last frame
+   * @param level - Optional level reference (unused by coins)
+   * @param keys - Optional keyboard state map (unused by coins)
    */
-  act(step: number) {
+  act(step?: number, level?: Level, keys?: KeyMap) {
+    if (step === undefined) return;
     const wobbleSpeed = 8;
     const wobbleDist = 0.07;
     this.wobble += step * wobbleSpeed;

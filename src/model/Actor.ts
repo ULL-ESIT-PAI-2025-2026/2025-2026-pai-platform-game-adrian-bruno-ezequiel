@@ -26,11 +26,11 @@ export abstract class Actor {
 
   /**
    * @desc Updates the actor's behavior for the current animation frame.
-   * @param step - Time step in seconds since the last frame
-   * @param level - Reference to the current level containing game state
-   * @param keys - Current state of keyboard keys being pressed
+    * @param step - Optional time step in seconds since the last frame
+    * @param level - Optional reference to the current level containing game state
+    * @param keys - Optional current state of keyboard keys being pressed
    */
-  act(step: number, level: Level, keys: { [key: string]: boolean }): void {}
+  abstract act(step?: number, level?: Level, keys?: KeyMap): void;
 
   /**
    * @desc Gets the type of this actor.
