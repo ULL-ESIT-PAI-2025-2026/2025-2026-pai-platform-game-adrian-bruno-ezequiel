@@ -11,11 +11,11 @@
  * @desc CanvasDisplay
  */
 
-import { Vector } from '../Vector.js';
-import { Status } from '../model/Level.js';
-import { ActorView } from './ActorView.js';
-import { PlayerView } from './PlayerView.js';
-import { ActorType } from '../model/Actor.js';
+import {Vector} from '../Vector.js';
+import {Status} from '../model/Level.js';
+import {ActorView} from './ActorView.js';
+import {PlayerView} from './PlayerView.js';
+import {ActorType} from '../model/Actor.js';
 
 /**
  * @desc Aggregated frame rendering data containing all information required to render a single game frame.
@@ -52,7 +52,7 @@ export class CanvasDisplay {
    * @param width - World width in grid units
    * @param height - World height in grid units
    */
-  constructor(private readonly canvas: HTMLCanvasElement, width: number, 
+  constructor(private readonly canvas: HTMLCanvasElement, width: number,
       height: number) {
     this.context = this.canvas.getContext('2d')!;
     this.canvas.width = Math.min(800, width * this.scale);
@@ -62,9 +62,9 @@ export class CanvasDisplay {
       top: 0,
       width: this.canvas.width / this.scale,
       height: this.canvas.height / this.scale,
-    }
+    };
     this.otherSprites = document.createElement('img');
-    this.otherSprites.src = '/assets/img/sprites.png'
+    this.otherSprites.src = '/assets/img/sprites.png';
     this.playerSprite = document.createElement('img');
     this.playerSprite.src = '/assets/img/player.png';
     this.livesSprite = document.createElement('img');
@@ -128,13 +128,13 @@ export class CanvasDisplay {
         const tileX = tile === 'lava' ? this.scale : 0;
 
         this.context.drawImage(
-          this.otherSprites,
-          tileX, 0,
-          this.scale, this.scale,
-          screenPosition.x,
-          screenPosition.y,
-          this.scale,
-          this.scale
+            this.otherSprites,
+            tileX, 0,
+            this.scale, this.scale,
+            screenPosition.x,
+            screenPosition.y,
+            this.scale,
+            this.scale,
         );
       }
     }
@@ -147,8 +147,8 @@ export class CanvasDisplay {
    */
   worldToCanvas(position: Vector): Vector {
     return new Vector(
-      (position.x - this.viewport.left) * this.scale,
-      (position.y - this.viewport.top) * this.scale
+        (position.x - this.viewport.left) * this.scale,
+        (position.y - this.viewport.top) * this.scale,
     );
   }
 
@@ -172,10 +172,10 @@ export class CanvasDisplay {
     let sprite = 8;
 
     let x = this.worldToCanvas(player.position).x;
-    let y = this.worldToCanvas(player.position).y;
+    const y = this.worldToCanvas(player.position).y;
 
     let width = player.size.x * this.scale;
-    let height = player.size.y * this.scale;
+    const height = player.size.y * this.scale;
 
     width += playerXOverlap * 2;
     x -= playerXOverlap;
@@ -195,15 +195,15 @@ export class CanvasDisplay {
     }
 
     this.context.drawImage(
-      this.playerSprite,
-      sprite * width,
-      0,
-      width,
-      height,
-      x,
-      y,
-      width,
-      height
+        this.playerSprite,
+        sprite * width,
+        0,
+        width,
+        height,
+        x,
+        y,
+        width,
+        height,
     );
 
     this.context.restore();
@@ -217,10 +217,10 @@ export class CanvasDisplay {
    * @param numberOfCollectedCoints - Coins collected so far
    */
   drawActors(
-    actors: ActorView[],
-    uiElements: ActorView[],
-    numberOfCoins: number,
-    numberOfCollectedCoints: number
+      actors: ActorView[],
+      uiElements: ActorView[],
+      numberOfCoins: number,
+      numberOfCollectedCoints: number,
   ) {
     const sprites = this.otherSprites;
 
@@ -233,15 +233,15 @@ export class CanvasDisplay {
       const tileX = (actor.type === 'coin' ? 2 : 1) * this.scale;
       if (actor.type === 'player') return;
       this.context.drawImage(
-        sprites,
-        tileX,
-        0,
-        width,
-        height,
-        screenPosition.x,
-        screenPosition.y,
-        width,
-        height
+          sprites,
+          tileX,
+          0,
+          width,
+          height,
+          screenPosition.x,
+          screenPosition.y,
+          width,
+          height,
       );
     });
 
@@ -260,15 +260,15 @@ export class CanvasDisplay {
         this.context.shadowColor = 'lightgrey';
 
         this.context.strokeText(
-          `${numberOfCollectedCoints}/${numberOfCoins}`,
-          x + this.context.canvas.clientWidth - this.scale * 4,
-          y + this.scale
+            `${numberOfCollectedCoints}/${numberOfCoins}`,
+            x + this.context.canvas.clientWidth - this.scale * 4,
+            y + this.scale,
         );
 
         this.context.fillText(
-          `${numberOfCollectedCoints}/${numberOfCoins}`,
-          x + this.context.canvas.clientWidth - this.scale * 4,
-          y + this.scale
+            `${numberOfCollectedCoints}/${numberOfCoins}`,
+            x + this.context.canvas.clientWidth - this.scale * 4,
+            y + this.scale,
         );
       }
     });

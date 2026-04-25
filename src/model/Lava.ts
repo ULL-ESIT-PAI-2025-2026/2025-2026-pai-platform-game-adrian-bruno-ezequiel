@@ -11,9 +11,9 @@
  * @desc Lava
  */
 
-import { Actor, KeyMap } from './Actor.js';
-import { Level } from './Level.js';
-import { Vector } from '../Vector.js';
+import {Actor, KeyMap} from './Actor.js';
+import {Level} from './Level.js';
+import {Vector} from '../Vector.js';
 
 /** @classdesc Represents a hazardous lava element in the game world. */
 export class Lava extends Actor {

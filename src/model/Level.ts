@@ -11,14 +11,14 @@
  * @desc Levels
  */
 
-import { Lava } from './Lava.js';
-import { Coin } from './Coin.js';
-import { Lives } from './Lives.js';
-import { Score } from './Score.js';
-import { Player } from './Player.js';
-import { Vector } from '../Vector.js';
-import { SoundType } from '../view/audio.js';
-import  { Actor, ActorType } from './Actor.js';
+import {Lava} from './Lava.js';
+import {Coin} from './Coin.js';
+import {Lives} from './Lives.js';
+import {Score} from './Score.js';
+import {Player} from './Player.js';
+import {Vector} from '../Vector.js';
+import {SoundType} from '../view/audio.js';
+import {Actor, ActorType} from './Actor.js';
 
 export type Status = 'lost' | 'won' | null;
 
@@ -30,18 +30,18 @@ export class Level {
   private actors: Actor[] = [];
   private uiElements: Actor[] = [];
   private status: Status = null;
-  private finishDelay: number = 0;
+  private finishDelay = 0;
   private readonly player: Player;
   private readonly numberOfCoins: number;
   private numberOfCollectedCoins: number;
   onSoundCallback?: (soundType: SoundType) => void;
 
   private readonly ACTOR_CHARS: { [key: string]: any } = {
-    '@': Player,  // Player character
-    'o': Coin,    // Collectible coin
-    '=': Lava,    // Horizontal moving lava
-    '|': Lava,    // Vertical moving lava
-    'v': Lava,    // Dripping lava
+    '@': Player, // Player character
+    'o': Coin, // Collectible coin
+    '=': Lava, // Horizontal moving lava
+    '|': Lava, // Vertical moving lava
+    'v': Lava, // Dripping lava
   };
 
   /**
@@ -79,7 +79,7 @@ export class Level {
   getPlayer() {
     return this.player;
   }
-  
+
   /**
    * @desc Gets the width of the level.
    * @returns Level width in grid units
@@ -87,7 +87,7 @@ export class Level {
   getWidth() {
     return this.width;
   }
-  
+
   /**
    * @desc Gets the height of the level.
    * @returns Level height in grid units
@@ -95,7 +95,7 @@ export class Level {
   getHeight() {
     return this.height;
   }
-  
+
   /**
    * @desc Gets the static grid of the level.
    * @returns 2D array representing walls and lava tiles
@@ -103,7 +103,7 @@ export class Level {
   getGrid() {
     return this.grid;
   }
-  
+
   /**
    * @desc Gets all dynamic actors in the level.
    * @returns Array of actors (player, coins, lava)
@@ -111,7 +111,7 @@ export class Level {
   getActors() {
     return this.actors;
   }
-  
+
   /**
    * @desc Gets all UI elements in the level.
    * @returns Array of UI actors (score display, lives indicators)
@@ -119,7 +119,7 @@ export class Level {
   getUiElements() {
     return this.uiElements;
   }
-  
+
   /**
    * @desc Gets the current level completion status.
    * @returns Current status (`'won'`, `'lost'`, or `null`)
@@ -127,7 +127,7 @@ export class Level {
   getStatus() {
     return this.status;
   }
-  
+
   /**
    * @desc Gets the total number of coins in the level.
    * @returns Total coin count
@@ -135,7 +135,7 @@ export class Level {
   getNumberOfCoins() {
     return this.numberOfCoins;
   }
-  
+
   /**
    * @desc Gets the number of coins collected so far.
    * @returns Collected coin count
@@ -160,7 +160,7 @@ export class Level {
     this.lives = newLives;
     this.updateLivesDisplay(newLives);
   }
-  
+
   /**
    * @desc Parses the level string and builds the grid and actors.
    * @param levelString - Array of strings representing the level layout
@@ -217,7 +217,7 @@ export class Level {
    */
   actorAt(actor: Actor) {
     return this.actors.find((other) =>
-      other !== actor && actor.overlaps(other)
+      other !== actor && actor.overlaps(other),
     );
   }
 
@@ -227,8 +227,8 @@ export class Level {
    */
   updateLivesDisplay(currentLives: number): void {
     // Remove all existing lives UI elements
-    this.uiElements = this.uiElements.filter(element => element.getType() !== 'lives');
-    
+    this.uiElements = this.uiElements.filter((element) => element.getType() !== 'lives');
+
     // Create new lives display UI elements
     for (let i = 0, x = 0; i < currentLives; i++, x += 1.2) {
       this.uiElements.push(new Lives(new Vector(x + 1, 1)));
@@ -264,9 +264,8 @@ export class Level {
       this.status = 'lost';
       this.finishDelay = 1;
     } else if (type === 'coin') {
-      
       this.onSoundCallback?.('coin');
-      
+
       this.numberOfCollectedCoins += 1;
       this.actors = this.actors.filter((other) => other !== actor);
       if (this.numberOfCoins === this.numberOfCollectedCoins) {

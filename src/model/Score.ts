@@ -11,14 +11,14 @@
  * @desc Score
  */
 
-import { Actor, KeyMap } from './Actor.js';
-import { Vector } from '../Vector.js';
-import { Level } from './Level.js';
+import {Actor, KeyMap} from './Actor.js';
+import {Vector} from '../Vector.js';
+import {Level} from './Level.js';
 
 /** @classdesc Represents a UI element that displays the player's current score. */
 export class Score extends Actor {
-  private animationTimer: number = 0;
-  private isAnimating: boolean = false;
+  private animationTimer = 0;
+  private isAnimating = false;
 
   /**
    * @desc Creates a new Score UI element at the specified position.
@@ -46,13 +46,13 @@ export class Score extends Actor {
       }
     }
   }
-  
+
   /** @desc Triggers a visual effect when the score increases. */
   onScoreIncrease(): void {
     this.isAnimating = true;
     this.animationTimer = 0;
   }
-  
+
   /**
    * @desc Checks if the score increase animation is currently playing.
    * @returns `true` if animation is active, `false` otherwise
@@ -60,7 +60,7 @@ export class Score extends Actor {
   isAnimatingScore(): boolean {
     return this.isAnimating;
   }
-  
+
   /**
    * @desc Gets the animation progress (0 to 1).
    * @returns Animation progress where 0 = start, 1 = complete

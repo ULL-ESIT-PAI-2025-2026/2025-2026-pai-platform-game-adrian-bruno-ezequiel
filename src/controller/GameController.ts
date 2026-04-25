@@ -11,11 +11,11 @@
  * @desc Controller
  */
 
-import { Actor, GameModel, KeyMap } from '../model/GameModel.js';
-import { ActorView } from '../view/ActorView.js';
-import { PlayerView } from '../view/PlayerView.js';
-import { AudioManager, SoundType } from '../view/audio.js';
-import { GameView } from '../view/GameView.js';
+import {Actor, GameModel, KeyMap} from '../model/GameModel.js';
+import {ActorView} from '../view/ActorView.js';
+import {PlayerView} from '../view/PlayerView.js';
+import {AudioManager, SoundType} from '../view/audio.js';
+import {GameView} from '../view/GameView.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
 export class GameController {
@@ -26,9 +26,9 @@ export class GameController {
   private readonly keys: KeyMap = Object.create(null);
   private keyHandlerCleanup: (() => void) | null = null;
   private static readonly KEY_MAP: Record<string, string> = {
-    'Escape': 'esc',    // Escape key
-    'ArrowLeft': 'left',  // Left arrow key
-    'ArrowUp': 'up',      // Up arrow key
+    'Escape': 'esc', // Escape key
+    'ArrowLeft': 'left', // Left arrow key
+    'ArrowUp': 'up', // Up arrow key
     'ArrowRight': 'right', // Right arrow key
   };
   private readonly audioManager: AudioManager;
@@ -40,14 +40,14 @@ export class GameController {
    */
   constructor(model: GameModel, view: GameView) {
     this.model = model;
-    this.view  = view;
+    this.view = view;
 
     this.setupKeyTracking();
 
     this.audioManager = new AudioManager();
     globalThis.addEventListener('keydown', () => {
       this.audioManager.playBackground();
-    }, { once: true });
+    }, {once: true});
   }
 
   /** @desc Starts the game from level 0 with initial lives. */
@@ -68,8 +68,6 @@ export class GameController {
    * @param lives - Number of lives to start with
    */
   private startLevel(index: number, lives: number): void {
-    
-
     this.stopAnimation();
 
     const level = this.model.reset(lives); // resets lives counter to `lives`
@@ -92,7 +90,7 @@ export class GameController {
     if (status === 'lost') {
       this.model.loseLife();
       if (!this.model.getHasLivesRemaining()) {
-        this.audioManager.play('gameOver')
+        this.audioManager.play('gameOver');
         // Game over → restart from level 0 with 3 lives
         setTimeout(() => this.startLevel(0, 3), 0);
         return;
@@ -105,7 +103,7 @@ export class GameController {
       return;
     }
     if (this.model.getIsLastLevel()) {
-      this.audioManager.play('levelClear')
+      this.audioManager.play('levelClear');
       setTimeout(() => this.startLevel(0, 3), 0);
       return;
     }
@@ -120,10 +118,10 @@ export class GameController {
 
     const frame = (time: number) => {
       if (this.lastTime === null) {
-          this.lastTime = time;
-          this.animationFrameId = requestAnimationFrame(frame);
-          return;
-      } //primera iteracion
+        this.lastTime = time;
+        this.animationFrameId = requestAnimationFrame(frame);
+        return;
+      } // primera iteracion
       const step = Math.min(time - this.lastTime, 100) / 1000;
 
       if (this.keys['esc']) return;
@@ -133,18 +131,18 @@ export class GameController {
       const actorsView: ActorView[] = currentLevel.getActors().map((actor: Actor) => ({
         type: actor.getType(),
         position: actor.getPosition(),
-        size: actor.getSize()
+        size: actor.getSize(),
       }));
 
       const uiElementsView: ActorView[] = currentLevel.getUiElements().map((actor: Actor) => ({
         type: actor.getType(),
         position: actor.getPosition(),
-        size: actor.getSize()
+        size: actor.getSize(),
       }));
       const playerView: PlayerView = {
         position: currentLevel.getPlayer().getPosition(),
         size: currentLevel.getPlayer().getSize(),
-        speed: currentLevel.getPlayer().getSpeed()
+        speed: currentLevel.getPlayer().getSpeed(),
       };
       this.view.drawFrame({
         step,
