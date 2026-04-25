@@ -45,7 +45,7 @@ export class GameController {
     this.setupKeyTracking();
 
     this.audioManager = new AudioManager();
-    window.addEventListener('keydown', () => {
+    globalThis.addEventListener('keydown', () => {
       this.audioManager.playBackground();
     }, { once: true });
   }
@@ -195,11 +195,11 @@ export class GameController {
       event.preventDefault();
     };
 
-    window.addEventListener('keydown', handler);
-    window.addEventListener('keyup', handler);
+    globalThis.addEventListener('keydown', handler);
+    globalThis.addEventListener('keyup', handler);
     this.keyHandlerCleanup = () => {
-      window.removeEventListener('keydown', handler);
-      window.removeEventListener('keyup', handler);
+      globalThis.removeEventListener('keydown', handler);
+      globalThis.removeEventListener('keyup', handler);
     };
   }
 }
