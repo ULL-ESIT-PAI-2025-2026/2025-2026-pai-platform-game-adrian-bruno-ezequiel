@@ -79,8 +79,8 @@ A Mario-inspired 2D platformer built with TypeScript and the HTML5 Canvas API. N
 ### Installation
 
 ```bash
-git clone <repository-url>
-cd platform-game
+git clone https://github.com/ULL-ESIT-PAI-2025-2026/2025-2026-pai-platform-game-adrian-bruno-ezequiel.git
+cd 2025-2026-pai-platform-game-adrian-bruno-ezequiel
 npm install
 ```
 
@@ -92,7 +92,7 @@ Compile TypeScript and start the dev server:
 npm start
 ```
 
-Then open your browser at `http://localhost:8080` (or whichever port the dev server uses).
+Then open your browser at `http://localhost:8080`.
 
 ### Build & Run
 
