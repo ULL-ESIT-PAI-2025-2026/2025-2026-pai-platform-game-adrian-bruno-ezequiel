@@ -26,14 +26,13 @@ export type DisplayType = 'canvas' | 'dom';
 /** @classdesc Single entry-point to the view layer. */
 export class GameView {
   private canvasDisplay: CanvasDisplay | undefined;
-  private canvas;
+  private canvas: HTMLCanvasElement;
+  private readonly displayType: DisplayType;
 
-  /** @desc Creates a new GameView instance and finds the canvas element. */
-  constructor() {
-    this.canvas = document.getElementById('main-canvas') as HTMLCanvasElement;
-    if (!this.canvas) {
-      console.log('no canvas');
-    }
+  /** @desc Creates a new GameView instance with injected rendering dependencies. */
+  constructor(canvas: HTMLCanvasElement, displayType: DisplayType = 'canvas') {
+    this.canvas = canvas;
+    this.displayType = displayType;
   }
 
   /**
@@ -42,6 +41,9 @@ export class GameView {
    * @param height - Height of the level in grid units
    */
   mount(width: number, height: number): void {
+    if (this.displayType !== 'canvas') {
+      throw new Error(`GameView: unsupported display type "${this.displayType}"`);
+    }
     this.unmount();
     this.canvasDisplay = new CanvasDisplay(this.canvas, width, height);
   }
