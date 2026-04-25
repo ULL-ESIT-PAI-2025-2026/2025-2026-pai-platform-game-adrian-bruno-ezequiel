@@ -20,7 +20,7 @@ import { GameView } from './view/GameView.js';
 function main() {
   const canvas = document.getElementById('main-canvas');
   if (!(canvas instanceof HTMLCanvasElement)) {
-    throw new Error('Main: #main-canvas not found or invalid');
+    throw new TypeError('Main: #main-canvas not found or invalid');
   }
 
   const model = new GameModel(GAME_LEVELS);
