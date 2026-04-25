@@ -16,7 +16,7 @@ import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a collectible coin in the game world. */
 export class Coin extends Actor {
-  private basePosition: Vector;
+  private readonly basePosition: Vector;
   private wobble: number;
   /**
    * @desc Creates a new Coin instance at the specified position.

@@ -20,11 +20,10 @@ export type SoundType =
 
 /** @classdesc Manages audio playback for sound effects and background music in the game. */
 export class AudioManager {
-  private map: Map<SoundType, string> = new Map();
-  private sound: HTMLAudioElement;
-  private music: HTMLAudioElement;
-
-  private musicSource: string = 'assets/sound/overworld.mp3';
+  private readonly map: Map<SoundType, string> = new Map();
+  private readonly sound: HTMLAudioElement;
+  private readonly music: HTMLAudioElement;
+  private readonly musicSource: string = 'assets/sound/overworld.mp3';
 
   /** @desc Creates a new AudioManager instance and initializes audio elements. */
   constructor() {

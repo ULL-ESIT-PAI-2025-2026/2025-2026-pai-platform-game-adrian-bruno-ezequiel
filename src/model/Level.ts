@@ -24,15 +24,15 @@ export type Status = 'lost' | 'won' | null;
 
 /** @classdesc Represents a single game level containing the game world, actors, and game state. */
 export class Level {
-  private width: number;
-  private height: number;
-  private grid: ActorType[][] = [];
+  private readonly width: number;
+  private readonly height: number;
+  private readonly grid: ActorType[][] = [];
   private actors: Actor[] = [];
   private uiElements: Actor[] = [];
   private status: Status = null;
   private finishDelay: number = 0;
-  private player: Player;
-  private numberOfCoins: number;
+  private readonly player: Player;
+  private readonly numberOfCoins: number;
   private numberOfCollectedCoins: number;
   onSoundCallback?: (soundType: SoundType) => void;
 

@@ -19,22 +19,19 @@ import { GameView } from '../view/GameView.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
 export class GameController {
-  private model: GameModel;
-  private view: GameView;
+  private readonly model: GameModel;
+  private readonly view: GameView;
   private lastTime: number | null = null;
   private animationFrameId: number | null = null;
   private readonly keys: KeyMap = Object.create(null);
-  
   private keyHandlerCleanup: (() => void) | null = null;
-
   private static readonly KEY_MAP: Record<number, string> = {
     27: 'esc',   // Escape key
     37: 'left',  // Left arrow key
     38: 'up',    // Up arrow key
     39: 'right', // Right arrow key
   };
-  
-  private audioManager: AudioManager;
+  private readonly audioManager: AudioManager;
 
   /**
    * @desc Creates a new game controller instance.

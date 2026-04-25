@@ -17,7 +17,7 @@ import { Vector } from '../Vector.js';
 
 /** @classdesc Represents the playable character in the game. */
 export class Player extends Actor {
-  private speed: Vector;
+  private readonly speed: Vector;
 
   /**
    * @desc Creates a new Player instance at the specified tile position.
