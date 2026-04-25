@@ -26,7 +26,7 @@ export { Level, Actor, ActorType, KeyMap, Vector, Player, Coin, Lava, Lives, Sco
 
 /** @classdesc Owns the mutable game state and exposes the minimal surface. */
 export class GameModel {
-  private plans: string[][];
+  private readonly plans: string[][];
   private currentLevel: Level | null = null;
   private currentLevelIndex: number = 0;
   private lives: number;

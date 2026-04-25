@@ -26,7 +26,7 @@ export type DisplayType = 'canvas' | 'dom';
 /** @classdesc Single entry-point to the view layer. */
 export class GameView {
   private canvasDisplay: CanvasDisplay | undefined;
-  private canvas: HTMLCanvasElement;
+  private readonly canvas: HTMLCanvasElement;
   private readonly displayType: DisplayType;
 
   /** @desc Creates a new GameView instance with injected rendering dependencies. */

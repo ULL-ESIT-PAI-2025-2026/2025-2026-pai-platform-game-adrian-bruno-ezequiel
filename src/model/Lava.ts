@@ -18,7 +18,7 @@ import { Vector } from '../Vector.js';
 /** @classdesc Represents a hazardous lava element in the game world. */
 export class Lava extends Actor {
   private speed: Vector;
-  private repeatPosition: Vector;
+  private readonly repeatPosition: Vector;
 
   /**
    * @desc Creates a new Lava instance at the specified position with the given type.

@@ -19,14 +19,14 @@ import { ActorType } from '../model/Actor.js';
 
 /** @classdesc Handles all canvas-based rendering for the game using the HTML5 Canvas API. */
 export class CanvasDisplay {
-  private scale = 20;
+  private readonly scale = 20;
   private animationTime = 0;
   private flipPlayer = false;
-  private context;
-  private viewport;
-  private otherSprites;
-  private playerSprite;
-  private livesSprite;
+  private readonly context;
+  private readonly viewport;
+  private readonly otherSprites;
+  private readonly playerSprite;
+  private readonly livesSprite;
 
   /**
    * @desc Creates a new CanvasDisplay instance.
@@ -34,7 +34,8 @@ export class CanvasDisplay {
    * @param width - World width in grid units
    * @param height - World height in grid units
    */
-  constructor(private canvas: HTMLCanvasElement, width: number, height: number) {
+  constructor(private readonly canvas: HTMLCanvasElement, width: number, 
+      height: number) {
     this.context = this.canvas.getContext('2d')!;
     this.canvas.width = Math.min(800, width * this.scale);
     this.canvas.height = Math.min(550, height * this.scale);
