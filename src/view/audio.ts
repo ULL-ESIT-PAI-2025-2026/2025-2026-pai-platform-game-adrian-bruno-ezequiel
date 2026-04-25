@@ -18,14 +18,20 @@ export type SoundType =
   | 'levelClear'
   | 'gameOver';
 
-/** @classdesc Manages audio playback for sound effects and background music in the game. */
+/** 
+ * @classdesc Manages audio playback for sound effects and background music in
+ * the game.
+ */
 export class AudioManager {
   private readonly map: Map<SoundType, string> = new Map();
   private readonly sound: HTMLAudioElement;
   private readonly music: HTMLAudioElement;
   private readonly musicSource: string = 'assets/sound/overworld.mp3';
 
-  /** @desc Creates a new AudioManager instance and initializes audio elements. */
+  /** 
+   * @desc Creates a new AudioManager instance and initializes audio 
+   * elements.
+   */
   constructor() {
     this.music = document.getElementById('music')! as HTMLAudioElement;
     this.sound = document.getElementById('sound')! as HTMLAudioElement;

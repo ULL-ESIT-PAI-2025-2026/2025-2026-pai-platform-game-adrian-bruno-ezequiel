@@ -21,7 +21,8 @@ export class Lava extends Actor {
   private readonly repeatPosition: Vector;
 
   /**
-   * @desc Creates a new Lava instance at the specified position with the given type.
+   * @desc Creates a new Lava instance at the specified position with the 
+   * given type.
    * @param position - The initial position of the lava
    * @param char - The character representing lava type
    */

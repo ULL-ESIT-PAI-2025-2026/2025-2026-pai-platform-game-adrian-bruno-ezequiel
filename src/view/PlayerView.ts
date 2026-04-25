@@ -13,7 +13,10 @@
 
 import {Vector} from '../Vector';
 
-/** @desc Minimal data structure needed by the view to render the player character. */
+/** 
+ * @desc Minimal data structure needed by the view to render the player 
+ * character.
+ */
 export interface PlayerView {
   position: Vector;
   size: Vector;

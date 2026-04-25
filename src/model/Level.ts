@@ -22,7 +22,10 @@ import {Actor, ActorType} from './Actor.js';
 
 export type Status = 'lost' | 'won' | null;
 
-/** @classdesc Represents a single game level containing the game world, actors, and game state. */
+/** 
+ * @classdesc Represents a single game level containing the game world, actors,
+ * and game state. 
+ */
 export class Level {
   private readonly width: number;
   private readonly height: number;
@@ -59,8 +62,10 @@ export class Level {
 
     this.fillGrid(levelString);
 
-    this.player = this.actors.find((actor) => actor.getType() === 'player') as Player;
-    this.numberOfCoins = this.actors.filter((actor) => actor.getType() === 'coin').length;
+    this.player = this.actors
+        .find((actor) => actor.getType() === 'player') as Player;
+    this.numberOfCoins = this.actors
+        .filter((actor) => actor.getType() === 'coin').length;
     this.numberOfCollectedCoins = 0;
 
     // Create lives display UI elements
@@ -227,7 +232,8 @@ export class Level {
    */
   updateLivesDisplay(currentLives: number): void {
     // Remove all existing lives UI elements
-    this.uiElements = this.uiElements.filter((element) => element.getType() !== 'lives');
+    this.uiElements = this.uiElements
+        .filter((element) => element.getType() !== 'lives');
 
     // Create new lives display UI elements
     for (let i = 0, x = 0; i < currentLives; i++, x += 1.2) {
@@ -278,7 +284,8 @@ export class Level {
 
   /**
    * @desc Checks if the level has finished and is ready to transition.
-   * @returns `true` if level is finished and delay has elapsed, `false` otherwise
+   * @returns `true` if level is finished and delay has elapsed, `false` 
+   * otherwise
    */
   isFinished() {
     return this.status !== null && this.finishDelay < 0;

@@ -128,17 +128,19 @@ export class GameController {
       this.model.animate(step, this.keys);
       const currentLevel = this.model.getCurrentLevel();
 
-      const actorsView: ActorView[] = currentLevel.getActors().map((actor: Actor) => ({
-        type: actor.getType(),
-        position: actor.getPosition(),
-        size: actor.getSize(),
-      }));
+      const actorsView: ActorView[] = currentLevel.getActors()
+          .map((actor: Actor) => ({
+            type: actor.getType(),
+            position: actor.getPosition(),
+            size: actor.getSize(),
+          }));
 
-      const uiElementsView: ActorView[] = currentLevel.getUiElements().map((actor: Actor) => ({
-        type: actor.getType(),
-        position: actor.getPosition(),
-        size: actor.getSize(),
-      }));
+      const uiElementsView: ActorView[] = currentLevel.getUiElements()
+          .map((actor: Actor) => ({
+            type: actor.getType(),
+            position: actor.getPosition(),
+            size: actor.getSize(),
+          }));
       const playerView: PlayerView = {
         position: currentLevel.getPlayer().getPosition(),
         size: currentLevel.getPlayer().getSize(),

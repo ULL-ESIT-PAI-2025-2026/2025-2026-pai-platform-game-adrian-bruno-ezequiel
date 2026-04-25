@@ -14,7 +14,10 @@
 import {Vector} from '../Vector';
 import {ActorType} from '../model/Actor';
 
-/** @desc Minimal data structure needed by the view to render any actor in the game world. */
+/** 
+ * @desc Minimal data structure needed by the view to render any actor in the 
+ * game world. 
+ */
 export interface ActorView {
   type: ActorType;
   position: Vector;

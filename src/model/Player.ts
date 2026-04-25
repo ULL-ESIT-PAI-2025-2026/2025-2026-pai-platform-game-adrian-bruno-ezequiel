@@ -108,7 +108,8 @@ export class Player extends Actor {
 
   /**
    * @desc Gets the player's current velocity vector.
-   * @returns The player's speed vector (x = horizontal velocity, y = vertical velocity)
+   * @returns The player's speed vector (x = horizontal velocity, y = vertical
+   * velocity)
    */
   getSpeed() {
     return this.speed;

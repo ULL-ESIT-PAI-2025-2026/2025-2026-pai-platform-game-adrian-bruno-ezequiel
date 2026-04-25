@@ -24,7 +24,10 @@ export class GameView {
   private readonly canvas: HTMLCanvasElement;
   private readonly displayType: DisplayType;
 
-  /** @desc Creates a new GameView instance with injected rendering dependencies. */
+  /** 
+   * @desc Creates a new GameView instance with injected rendering 
+   * dependencies. 
+   */
   constructor(canvas: HTMLCanvasElement, displayType: DisplayType = 'canvas') {
     this.canvas = canvas;
     this.displayType = displayType;
@@ -37,7 +40,8 @@ export class GameView {
    */
   mount(width: number, height: number): void {
     if (this.displayType !== 'canvas') {
-      throw new Error(`GameView: unsupported display type "${this.displayType}"`);
+      throw new Error(
+        `GameView: unsupported display type "${this.displayType}"`);
     }
     this.unmount();
     this.canvasDisplay = new CanvasDisplay(this.canvas, width, height);

@@ -15,14 +15,18 @@ import {Actor, KeyMap} from './Actor.js';
 import {Vector} from '../Vector.js';
 import {Level} from './Level.js';
 
-/** @classdesc Represents a UI element that displays the player's current score. */
+/** 
+ * @classdesc Represents a UI element that displays the player's current 
+ * score. 
+ */
 export class Score extends Actor {
   private animationTimer = 0;
   private isAnimating = false;
 
   /**
    * @desc Creates a new Score UI element at the specified position.
-   * @param position - The position vector where the score display should be placed
+   * @param position - The position vector where the score display should be
+   * placed.
    */
   constructor(position: Vector) {
     super();

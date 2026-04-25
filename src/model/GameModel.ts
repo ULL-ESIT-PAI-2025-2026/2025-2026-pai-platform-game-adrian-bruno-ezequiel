@@ -15,7 +15,10 @@ import {Level} from './Level.js';
 import {SoundType} from '../view/audio.js';
 import type {KeyMap} from './Actor.js';
 
-// Re-export all model types so the rest of the app only needs to import from GameModel
+/**
+ * Re-export all model types so the rest of the app only needs to import from 
+ * GameModel
+ */
 export {Level} from './Level.js';
 export {Actor, ActorType, KeyMap} from './Actor.js';
 export {Vector} from '../Vector.js';
@@ -104,7 +107,8 @@ export class GameModel {
   }
 
   /**
-   * @desc Reloads the current level (used when the player dies but has lives remaining).
+   * @desc Reloads the current level (used when the player dies but has lives 
+   * remaining).
    * @returns The reloaded Level instance
    */
   reloadCurrentLevel(): Level {
