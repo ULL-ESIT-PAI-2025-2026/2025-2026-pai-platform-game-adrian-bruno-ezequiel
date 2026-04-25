@@ -11,12 +11,11 @@
  * @desc Controller
  */
 
-import { Actor } from '../model/GameModel.js';
+import { Actor, ActorType, GameModel, KeyMap } from '../model/GameModel.js';
 import { ActorView } from '../view/ActorView.js';
 import { PlayerView } from '../view/PlayerView.js';
 import { AudioManager, SoundType } from '../view/audio.js';
 import { GameView } from '../view/GameView.js';
-import { ActorType, GameModel, KeyMap } from '../model/GameModel.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
 export class GameController {
