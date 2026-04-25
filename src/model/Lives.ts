@@ -16,7 +16,6 @@ import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a UI element that displays the player's remaining lives. */
 export class Lives extends Actor {
-  
   /**
    * @desc Creates a new Lives UI element at the specified position.
    * @param position - The position vector where the life indicator should be placed
