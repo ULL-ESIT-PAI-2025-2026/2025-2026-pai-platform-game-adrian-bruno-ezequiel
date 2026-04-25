@@ -19,7 +19,7 @@ import { ActorType } from '../model/Actor.js';
 import { CanvasDisplay } from './CanvasDisplay.js';
 
 // Re-export display types for convenience
-export { CanvasDisplay };
+export { CanvasDisplay } from './CanvasDisplay.js';
 
 export type DisplayType = 'canvas' | 'dom';
 
