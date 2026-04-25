@@ -25,21 +25,20 @@ A Mario-inspired 2D platformer built with TypeScript and the HTML5 Canvas API. N
 │   └── dev-server.js            # Development HTTP server
 ├── public/
 │   ├── index.html
-│   ├── styles/
-│   │   └── styles.css
 │   └── assets/
 │       ├── img/
-│       │   ├── player.png       # Player sprite sheet (10 frames)
+│       │   ├── player.png       # Player sprite sheet
 │       │   ├── sprites.png      # Tiles and actor sprites
-│       │   └── lives.png        # Lives HUD icon
-│       └── sound/
-│           ├── overworld.mp3    # Background music
-│           ├── coin.wav
-│           ├── jump-small.wav
-│           ├── mario-die.wav
-│           ├── stage-clear.wav
-│           ├── game-over.wav
-│           └── ...
+│       │   └── lives.png        # Lives icon
+│       ├── sound/
+│       │   ├── overworld.mp3    # Background music
+│       │   ├── coin.wav
+│       │   ├── jump-small.wav
+│       │   ├── mario-die.wav
+│       │   ├── stage-clear.wav
+│       │   └── game-over.wav
+│       └── styles/
+│           └── styles.css
 ├── src/
 │   ├── main.ts                  # Entry point
 │   ├── GameLevels.ts            # Level definitions
