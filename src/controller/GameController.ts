@@ -11,7 +11,7 @@
  * @desc Controller
  */
 
-import { Actor, ActorType, GameModel, KeyMap } from '../model/GameModel.js';
+import { Actor, GameModel, KeyMap } from '../model/GameModel.js';
 import { ActorView } from '../view/ActorView.js';
 import { PlayerView } from '../view/PlayerView.js';
 import { AudioManager, SoundType } from '../view/audio.js';
@@ -131,13 +131,13 @@ export class GameController {
       const currentLevel = this.model.getCurrentLevel();
 
       const actorsView: ActorView[] = currentLevel.getActors().map((actor: Actor) => ({
-        type: actor.getType() as ActorType,
+        type: actor.getType(),
         position: actor.getPosition(),
         size: actor.getSize()
       }));
 
       const uiElementsView: ActorView[] = currentLevel.getUiElements().map((actor: Actor) => ({
-        type: actor.getType() as ActorType,
+        type: actor.getType(),
         position: actor.getPosition(),
         size: actor.getSize()
       }));
