@@ -11,12 +11,7 @@
  * @desc GameView
  */
 
-import { Vector } from '../Vector.js';
-import { Status } from '../model/Level.js';
-import { ActorView } from './ActorView.js';
-import { PlayerView } from './PlayerView.js';
-import { ActorType } from '../model/Actor.js';
-import { CanvasDisplay } from './CanvasDisplay.js';
+import { CanvasDisplay, DrawFrameData } from './CanvasDisplay.js';
 
 // Re-export display types for convenience
 export { CanvasDisplay } from './CanvasDisplay.js';
@@ -57,40 +52,11 @@ export class GameView {
 
   /**
    * @desc Renders one complete frame of the game.
-   * @param step - Time step in seconds (for animation timing)
-   * @param center - Center position for viewport (typically player position)
-   * @param actors - Array of dynamic actors to render (coins, lava, etc.)
-   * @param uiElements - Array of UI elements to render (score, lives)
-   * @param playerView - Player data for rendering (position, size, speed)
-   * @param worldWidth - Total world width in grid units
-   * @param worldHeight - Total world height in grid units
-   * @param numberOfCoins - Total coins in the level
-   * @param numberOfCollectedCoins - Coins collected so far
-   * @param status - Current level status (won/lost/null)
-   * @param grid - Level grid for background tiles (walls, lava floors)
+    * @param frameData - Aggregated frame rendering data
    * @throws {Error} If no display is mounted before calling drawFrame
    */
-  drawFrame(
-    step: number, center: Vector,
-    actors: ActorView[], uiElements: ActorView[], playerView: PlayerView,
-    worldWidth: number, worldHeight: number,
-    numberOfCoins: number, numberOfCollectedCoins: number,
-    status: Status,
-    grid: ActorType[][]
-  ): void {
+  drawFrame(frameData: DrawFrameData): void {
     if (!this.canvasDisplay) throw new Error('GameView: no display mounted');
-    this.canvasDisplay.drawFrame(
-      step,
-      center,
-      worldWidth,
-      worldHeight,
-      actors,
-      uiElements,
-      playerView, 
-      numberOfCoins,
-      numberOfCollectedCoins,
-      status,
-      grid,
-    );
+    this.canvasDisplay.drawFrame(frameData);
   }
 }

@@ -143,19 +143,19 @@ export class GameController {
         size: currentLevel.getPlayer().getSize(),
         speed: currentLevel.getPlayer().getSpeed()
       };
-      this.view.drawFrame(
+      this.view.drawFrame({
         step,
-        currentLevel.getPlayer().getPosition(),
-        actorsView,
-        uiElementsView,
+        center: currentLevel.getPlayer().getPosition(),
+        actors: actorsView,
+        uiElements: uiElementsView,
         playerView,
-        currentLevel.getWidth(),
-        currentLevel.getHeight(),
-        currentLevel.getNumberOfCoins(),
-        currentLevel.getNumberOfCollectedCoins(),
-        currentLevel.getStatus(),
-        currentLevel.getGrid(),
-      );
+        worldWidth: currentLevel.getWidth(),
+        worldHeight: currentLevel.getHeight(),
+        numberOfCoins: currentLevel.getNumberOfCoins(),
+        numberOfCollectedCoins: currentLevel.getNumberOfCollectedCoins(),
+        status: currentLevel.getStatus(),
+        grid: currentLevel.getGrid(),
+      });
 
       const status = currentLevel.getStatus();
       if (currentLevel.isFinished() && status) {

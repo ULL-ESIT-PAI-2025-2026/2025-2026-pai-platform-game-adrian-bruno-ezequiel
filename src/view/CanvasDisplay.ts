@@ -17,6 +17,24 @@ import { ActorView } from './ActorView.js';
 import { PlayerView } from './PlayerView.js';
 import { ActorType } from '../model/Actor.js';
 
+/**
+ * @desc Aggregated frame rendering data containing all information required to render a single game frame.
+ * Used to reduce method parameter count and improve code clarity in the rendering pipeline.
+ */
+export interface DrawFrameData {
+  step: number;
+  center: Vector;
+  worldWidth: number;
+  worldHeight: number;
+  actors: ActorView[];
+  uiElements: ActorView[];
+  playerView: PlayerView;
+  numberOfCoins: number;
+  numberOfCollectedCoins: number;
+  status: Status;
+  grid: ActorType[][];
+}
+
 /** @classdesc Handles all canvas-based rendering for the game using the HTML5 Canvas API. */
 export class CanvasDisplay {
   private readonly scale = 20;
@@ -257,28 +275,24 @@ export class CanvasDisplay {
   }
 
   /**
-   * @desc Renders a complete frame of the game.
-   * @param step - Time step in seconds (for animation timing)
-   * @param center - Center position for viewport (typically player position)
-   * @param worldWidth - Total world width in grid units
-   * @param worldHeight - Total world height in grid units
-   * @param actors - Array of dynamic actors to render
-   * @param uiElements - Array of UI elements to render
-   * @param playerView - Player data for rendering
-   * @param numberOfCoins - Total coins in the level
-   * @param numberOfCollectedCoins - Coins collected so far
-   * @param status - Current level status (for background color)
-   * @param grid - Level grid for background tiles
+   * @desc Renders a complete frame of the game with viewport, actors, UI, and background.
+   * @param frameData - Aggregated frame rendering data containing all required game state and view information
    */
-  drawFrame(
-    step: number,
-    center: Vector, worldWidth: number, worldHeight: number,
-    actors: ActorView[], uiElements: ActorView[], playerView: PlayerView,
-    numberOfCoins: number,
-    numberOfCollectedCoins: number,
-    status: Status,
-    grid: ActorType[][],
-  ) {
+  drawFrame(frameData: DrawFrameData) {
+    const {
+      step,
+      center,
+      worldWidth,
+      worldHeight,
+      actors,
+      uiElements,
+      playerView,
+      numberOfCoins,
+      numberOfCollectedCoins,
+      status,
+      grid,
+    } = frameData;
+
     this.animationTime += step;
     this.updateViewport(center, worldWidth, worldHeight);
     this.clearDisplay(status);
