@@ -30,7 +30,7 @@ export class Lives extends Actor {
     this.position = position;
     this.size = new Vector(1, 1);
     this.type = 'lives';
-    this.wobble = Math.random() * Math.PI * 2;
+    this.wobble = (this.basePosition.x + this.basePosition.y) % (Math.PI * 2);
   }
 
   /**
