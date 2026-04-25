@@ -18,8 +18,10 @@ import {PlayerView} from './PlayerView.js';
 import {ActorType} from '../model/Actor.js';
 
 /**
- * @desc Aggregated frame rendering data containing all information required to render a single game frame.
- * Used to reduce method parameter count and improve code clarity in the rendering pipeline.
+ * @desc Aggregated frame rendering data containing all information required to
+ * render a single game frame.
+ * Used to reduce method parameter count and improve code clarity in the 
+ * rendering pipeline.
  */
 export interface DrawFrameData {
   step: number;
@@ -35,7 +37,10 @@ export interface DrawFrameData {
   grid: ActorType[][];
 }
 
-/** @classdesc Handles all canvas-based rendering for the game using the HTML5 Canvas API. */
+/** 
+ * @classdesc Handles all canvas-based rendering for the game using the HTML5 
+ * Canvas API.
+ */
 export class CanvasDisplay {
   private readonly scale = 20;
   private animationTime = 0;
@@ -84,17 +89,24 @@ export class CanvasDisplay {
     if (center.x < viewport.left + margin) {
       viewport.left = Math.max(center.x - margin, 0);
     } else if (center.x > viewport.left + viewport.width - margin) {
-      viewport.left = Math.min(center.x + margin - viewport.width, worldWith - viewport.width);
+      viewport.left = Math.min(
+        center.x + margin - viewport.width, 
+        worldWith - viewport.width
+      );
     }
     if (center.y < viewport.top + margin) {
       viewport.top = Math.max(center.y - margin, 0);
     } else if (center.y > viewport.top + viewport.height - margin) {
-      viewport.top = Math.min(center.y + margin - viewport.height, worldHeight - viewport.height);
+      viewport.top = Math.min(
+        center.y + margin - viewport.height,
+        worldHeight - viewport.height
+      );
     }
   }
 
   /**
-   * @desc Clears the canvas and fills with background color based on game status.
+   * @desc Clears the canvas and fills with background color based on game
+   * status.
    * @param status - Current level status (won, lost, or null)
    */
   clearDisplay(status: Status) {
@@ -109,7 +121,8 @@ export class CanvasDisplay {
   }
 
   /**
-   * @desc Draws the background tiles (walls, lava floors) visible in the viewport.
+   * @desc Draws the background tiles (walls, lava floors) visible in the
+   * viewport.
    * @param grid - 2D array representing the level's static tiles
    */
   drawBackground(grid: ActorType[][]) {
@@ -153,7 +166,8 @@ export class CanvasDisplay {
   }
 
   /**
-   * @desc Flips the canvas context horizontally for mirroring the player sprite.
+   * @desc Flips the canvas context horizontally for mirroring the player 
+   * sprite.
    * @param context - Canvas rendering context to transform
    * @param around - X-coordinate (in pixels) to flip around
    */
@@ -210,7 +224,8 @@ export class CanvasDisplay {
   }
 
   /**
-   * @desc Draws all dynamic actors (coins, lava) and UI elements (score, lives).
+   * @desc Draws all dynamic actors (coins, lava) and UI elements (score, 
+   * lives).
    * @param actors - Array of dynamic actors to draw
    * @param uiElements - Array of UI elements to draw
    * @param numberOfCoins - Total coins in the level
@@ -253,7 +268,17 @@ export class CanvasDisplay {
       const y = actor.position.y * this.scale;
 
       if (actor.type === 'lives') {
-        this.context.drawImage(this.livesSprite, 0, 0, width, height, x, y, width, height);
+        this.context.drawImage(
+          this.livesSprite,
+          0,
+          0,
+          width,
+          height,
+          x,
+          y, 
+          width,
+          height
+        );
       } else if (actor.type === 'score') {
         this.context.font = '24px Monospace';
         this.context.fillStyle = 'white';
@@ -275,8 +300,10 @@ export class CanvasDisplay {
   }
 
   /**
-   * @desc Renders a complete frame of the game with viewport, actors, UI, and background.
-   * @param frameData - Aggregated frame rendering data containing all required game state and view information
+   * @desc Renders a complete frame of the game with viewport, actors, UI, and 
+   * background.
+   * @param frameData - Aggregated frame rendering data containing all 
+   * required game state and view information.
    */
   drawFrame(frameData: DrawFrameData) {
     const {

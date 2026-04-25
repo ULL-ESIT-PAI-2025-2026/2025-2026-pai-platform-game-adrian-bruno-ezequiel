@@ -15,14 +15,18 @@ import {Actor, KeyMap} from './Actor.js';
 import {Level} from './Level.js';
 import {Vector} from '../Vector.js';
 
-/** @classdesc Represents a UI element that displays the player's remaining lives. */
+/** 
+ * @classdesc Represents a UI element that displays the player's remaining 
+ * lives. 
+ */
 export class Lives extends Actor {
   private readonly basePosition: Vector;
   private wobble: number;
 
   /**
    * @desc Creates a new Lives UI element at the specified position.
-   * @param position - The position vector where the life indicator should be placed
+   * @param position - The position vector where the life indicator should be 
+   * placed
    */
   constructor(position: Vector) {
     super();
