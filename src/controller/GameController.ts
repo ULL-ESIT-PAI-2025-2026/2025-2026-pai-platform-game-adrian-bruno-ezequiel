@@ -25,11 +25,11 @@ export class GameController {
   private animationFrameId: number | null = null;
   private readonly keys: KeyMap = Object.create(null);
   private keyHandlerCleanup: (() => void) | null = null;
-  private static readonly KEY_MAP: Record<number, string> = {
-    27: 'esc',   // Escape key
-    37: 'left',  // Left arrow key
-    38: 'up',    // Up arrow key
-    39: 'right', // Right arrow key
+  private static readonly KEY_MAP: Record<string, string> = {
+    'Escape': 'esc',    // Escape key
+    'ArrowLeft': 'left',  // Left arrow key
+    'ArrowUp': 'up',      // Up arrow key
+    'ArrowRight': 'right', // Right arrow key
   };
   private readonly audioManager: AudioManager;
 
@@ -184,7 +184,7 @@ export class GameController {
   /** @desc Sets up keyboard event tracking for game controls. */
   private setupKeyTracking(): void {
     const handler = (event: KeyboardEvent) => {
-      const action = GameController.KEY_MAP[event.keyCode];
+      const action = GameController.KEY_MAP[event.code];
       if (!action) return;
 
       const down = event.type === 'keydown';
