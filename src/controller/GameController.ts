@@ -15,7 +15,7 @@ import { Actor } from '../model/GameModel.js';
 import { ActorView } from '../view/ActorView.js';
 import { PlayerView } from '../view/PlayerView.js';
 import { AudioManager, SoundType } from '../view/audio.js';
-import { GameView, DisplayType } from '../view/GameView.js';
+import { GameView } from '../view/GameView.js';
 import { ActorType, GameModel, KeyMap } from '../model/GameModel.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
@@ -39,19 +39,15 @@ export class GameController {
 
   /**
    * @desc Creates a new game controller instance.
-   * @param plans - 2D array representing level layouts
-   * @param parent - DOM element to attach the game view to
-   * @param displayType - Rendering type ('canvas' or other)
+   * @param model - Game model instance
+   * @param view - Game view instance
    */
-  constructor(
-    plans: string[][],
-    parent: HTMLElement = document.body,
-    displayType: DisplayType = 'canvas'
-  ) {
-    this.model = new GameModel(plans);
-    this.view  = new GameView();
+  constructor(model: GameModel, view: GameView) {
+    this.model = model;
+    this.view  = view;
+
     this.setupKeyTracking();
-    this.start();
+
     this.audioManager = new AudioManager();
     window.addEventListener('keydown', () => {
       this.audioManager.playBackground();
@@ -59,7 +55,7 @@ export class GameController {
   }
 
   /** @desc Starts the game from level 0 with initial lives. */
-  private start(): void {
+  start(): void {
     this.startLevel(0, 3);
   }
 
