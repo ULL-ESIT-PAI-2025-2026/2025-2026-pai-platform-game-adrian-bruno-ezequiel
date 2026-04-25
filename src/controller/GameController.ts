@@ -50,9 +50,7 @@ export class GameController {
   ) {
     this.model = new GameModel(plans);
     this.view  = new GameView();
-
     this.setupKeyTracking();
-
     this.start();
     this.audioManager = new AudioManager();
     window.addEventListener('keydown', () => {
@@ -78,10 +76,7 @@ export class GameController {
    * @param lives - Number of lives to start with
    */
   private startLevel(index: number, lives: number): void {
-    
-
     this.stopAnimation();
-
     const level = this.model.reset(lives); // resets lives counter to `lives`
     // reset() always goes to index 0; for other indices use loadLevel directly
     const currentLevel = index === 0 ? level : this.model.loadLevel(index);
@@ -133,7 +128,7 @@ export class GameController {
           this.lastTime = time;
           this.animationFrameId = requestAnimationFrame(frame);
           return;
-      } //primera iteracion
+      }
       const step = Math.min(time - this.lastTime, 100) / 1000;
 
       if (this.keys['esc']) return;
