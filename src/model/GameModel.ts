@@ -11,25 +11,25 @@
  * @desc Model
  */
 
-import { Level } from './Level.js';
-import { SoundType } from '../view/audio.js';
-import type { KeyMap } from './Actor.js';
+import {Level} from './Level.js';
+import {SoundType} from '../view/audio.js';
+import type {KeyMap} from './Actor.js';
 
 // Re-export all model types so the rest of the app only needs to import from GameModel
-export { Level } from './Level.js';
-export { Actor, ActorType, KeyMap } from './Actor.js';
-export { Vector } from '../Vector.js';
-export { Player } from './Player.js';
-export { Coin } from './Coin.js';
-export { Lava } from './Lava.js';
-export { Lives } from './Lives.js';
-export { Score } from './Score.js';
+export {Level} from './Level.js';
+export {Actor, ActorType, KeyMap} from './Actor.js';
+export {Vector} from '../Vector.js';
+export {Player} from './Player.js';
+export {Coin} from './Coin.js';
+export {Lava} from './Lava.js';
+export {Lives} from './Lives.js';
+export {Score} from './Score.js';
 
 /** @classdesc Owns the mutable game state and exposes the minimal surface. */
 export class GameModel {
   private readonly plans: string[][];
   private currentLevel: Level | null = null;
-  private currentLevelIndex: number = 0;
+  private currentLevelIndex = 0;
   private lives: number;
 
   /**
@@ -37,7 +37,7 @@ export class GameModel {
    * @param plans - 2D array of strings representing level layouts
    * @param startingLives - Initial number of lives (default: 3)
    */
-  constructor(plans: string[][], startingLives: number = 3) {
+  constructor(plans: string[][], startingLives = 3) {
     this.plans = plans;
     this.lives = startingLives;
   }
@@ -91,7 +91,7 @@ export class GameModel {
   bindSoundEvent(callback: (sound: SoundType) => void) {
     this.currentLevel!.onSoundCallback = callback;
   }
-  
+
   /**
    * @desc Loads (or reloads) the level at the specified index.
    * @param index - The level index to load (0-based)
@@ -124,7 +124,7 @@ export class GameModel {
    * @param lives - Number of lives to reset to (default: 3)
    * @returns The first Level instance
    */
-  reset(lives: number = 3): Level {
+  reset(lives = 3): Level {
     this.lives = lives;
     const level = this.loadLevel(0);
     level.setLives(lives);

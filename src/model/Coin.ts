@@ -11,9 +11,9 @@
  * @desc Coin
  */
 
-import { Actor, KeyMap } from './Actor.js';
-import { Vector } from '../Vector.js';
-import { Level } from './Level.js';
+import {Actor, KeyMap} from './Actor.js';
+import {Vector} from '../Vector.js';
+import {Level} from './Level.js';
 
 /** @classdesc Represents a collectible coin in the game world. */
 export class Coin extends Actor {

@@ -11,8 +11,8 @@
  * @desc Actor
  */
 
-import { Level } from './Level.js';
-import { Vector } from '../Vector.js';
+import {Level} from './Level.js';
+import {Vector} from '../Vector.js';
 
 
 export type ActorType = 'player' | 'coin' | 'lava' | 'score' | 'lives' | '';

@@ -11,10 +11,10 @@
  * @desc GameView
  */
 
-import { CanvasDisplay, DrawFrameData } from './CanvasDisplay.js';
+import {CanvasDisplay, DrawFrameData} from './CanvasDisplay.js';
 
 // Re-export display types for convenience
-export { CanvasDisplay } from './CanvasDisplay.js';
+export {CanvasDisplay} from './CanvasDisplay.js';
 
 export type DisplayType = 'canvas' | 'dom';
 

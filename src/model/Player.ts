@@ -11,9 +11,9 @@
  * @desc Player
  */
 
-import { Level } from './Level.js';
-import { Actor, KeyMap } from './Actor.js';
-import { Vector } from '../Vector.js';
+import {Level} from './Level.js';
+import {Actor, KeyMap} from './Actor.js';
+import {Vector} from '../Vector.js';
 
 /** @classdesc Represents the playable character in the game. */
 export class Player extends Actor {
