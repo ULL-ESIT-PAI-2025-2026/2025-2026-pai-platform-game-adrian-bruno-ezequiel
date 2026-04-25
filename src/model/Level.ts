@@ -248,6 +248,7 @@ export class Level {
     while (step > 0) {
       const thisStep = Math.min(step, maxStep);
       this.actors.forEach((actor) => actor.act(thisStep, this, keys));
+      this.uiElements.forEach((element) => element.act(thisStep, this, keys));
       step -= thisStep;
     }
   }

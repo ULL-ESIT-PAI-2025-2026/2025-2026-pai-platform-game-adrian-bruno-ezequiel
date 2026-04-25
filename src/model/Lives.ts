@@ -17,6 +17,8 @@ import { Vector } from '../Vector.js';
 
 /** @classdesc Represents a UI element that displays the player's remaining lives. */
 export class Lives extends Actor {
+  private readonly basePosition: Vector;
+  private wobble: number;
   
   /**
    * @desc Creates a new Lives UI element at the specified position.
@@ -24,16 +26,25 @@ export class Lives extends Actor {
    */
   constructor(position: Vector) {
     super();
+    this.basePosition = position;
     this.position = position;
     this.size = new Vector(1, 1);
     this.type = 'lives';
+    this.wobble = Math.random() * Math.PI * 2;
   }
 
   /**
-   * @desc Updates the Lives UI element (explicit no-op).
-   * @param step - Optional time step in seconds (unused by lives)
+   * @desc Updates the Lives UI element with a subtle floating animation.
+   * @param step - Optional time step in seconds since the last frame
    * @param level - Optional level reference (unused by lives)
    * @param keys - Optional keyboard state map (unused by lives)
    */
-  act(step?: number, level?: Level, keys?: KeyMap): void {}
+  act(step?: number, level?: Level, keys?: KeyMap): void {
+    if (step === undefined) return;
+    const wobbleSpeed = 5;
+    const wobbleDist = 0.04;
+    this.wobble += step * wobbleSpeed;
+    const wobbleOffset = Math.sin(this.wobble) * wobbleDist;
+    this.setPosition(this.basePosition.plus(new Vector(0, wobbleOffset)));
+  }
 }
