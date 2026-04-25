@@ -1043,3 +1043,4 @@ dkms.conf
 
 # SonarQube
 .scannerwork/
+eslint-report.json

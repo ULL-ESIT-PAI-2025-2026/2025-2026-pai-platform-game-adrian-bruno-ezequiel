@@ -6,17 +6,19 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'jsdoc'],
+  plugins: ['@typescript-eslint'], // Adiós jsdoc
   extends: [
     'google',
     'plugin:@typescript-eslint/recommended',
-    'plugin:jsdoc/recommended',
   ],
   parserOptions: {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
   rules: {
+    'valid-jsdoc': 'off', 
+    
+    // Solo mantenemos las reglas de TypeScript puro
     '@typescript-eslint/typedef': [
       'error',
       {
@@ -27,8 +29,6 @@ module.exports = {
         arrowParameter: true,
       },
     ],
-    'jsdoc/require-param-type': 'error',
-    'jsdoc/require-returns-type': 'error',
   },
   ignorePatterns: ['dist/', 'node_modules/'],
 };
