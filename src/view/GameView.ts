@@ -45,9 +45,7 @@ export class GameView {
 
   /** @desc Removes the current display and cleans up resources. */
   unmount(): void {
-    if (this.canvasDisplay) {
-      //this.canvasDisplay.clear();
-    }
+    this.canvasDisplay = undefined;
   }
 
   /**
