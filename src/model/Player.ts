@@ -12,7 +12,7 @@
  */
 
 import { Level } from './Level.js';
-import { Actor } from './Actor.js';
+import { Actor, KeyMap } from './Actor.js';
 import { Vector } from '../Vector.js';
 
 /** @classdesc Represents the playable character in the game. */
@@ -80,11 +80,12 @@ export class Player extends Actor {
 
   /**
    * @desc Updates the player's state for one animation frame.
-   * @param step - Time step in seconds since the last frame
-   * @param level - Reference to the current level
-   * @param keys - Current state of keyboard keys being pressed
+    * @param step - Optional time step in seconds since the last frame
+    * @param level - Optional reference to the current level
+    * @param keys - Optional current state of keyboard keys being pressed
    */
-  act(step: number, level: Level, keys: { [key: string]: boolean }) {
+  act(step?: number, level?: Level, keys?: KeyMap) {
+    if (step === undefined || level === undefined || keys === undefined) return;
     this.moveX(step, level, keys);
     this.moveY(step, level, keys);
 
