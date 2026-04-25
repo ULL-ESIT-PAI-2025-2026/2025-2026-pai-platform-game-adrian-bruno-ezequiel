@@ -13,10 +13,21 @@
 
 import { GAME_LEVELS } from './GameLevels.js';
 import { GameController } from './controller/GameController.js';
+import { GameModel } from './model/GameModel.js';
+import { GameView } from './view/GameView.js';
 
 /** @desc Entry point of the game application. */
 function main() {
-  new GameController(GAME_LEVELS);
+  const canvas = document.getElementById('main-canvas');
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    throw new Error('Main: #main-canvas not found or invalid');
+  }
+
+  const model = new GameModel(GAME_LEVELS);
+  const view = new GameView(canvas, 'canvas');
+  const controller = new GameController(model, view);
+
+  controller.start();
 }
 
 main();
