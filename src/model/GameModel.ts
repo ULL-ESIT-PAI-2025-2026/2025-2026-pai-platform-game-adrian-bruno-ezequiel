@@ -8,11 +8,12 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Model
+ * @desc Manages the game’s core state, including level loading, lives, frame
+ * simulation, and model-level event wiring.
  */
 
 import {Level} from './Level.js';
-import {SoundType} from '../view/audio.js';
+import {SoundType} from '../view/AudioManager.js';
 import type {KeyMap} from './Actor.js';
 
 /**

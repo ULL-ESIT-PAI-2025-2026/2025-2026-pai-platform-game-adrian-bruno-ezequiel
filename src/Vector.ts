@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Vector
+ * @desc Provides a basic 2D vector math helper for positions, velocities, and
+ * scaling.
  */
 
 /** @classdesc Represents a 2D vector with x and y components. */
