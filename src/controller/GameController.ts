@@ -76,7 +76,6 @@ export class GameController {
     const currentLevel = index === 0 ? level : this.model.loadLevel(index);
     this.model.bindSoundEvent((soundType: SoundType) => {
       this.audioManager.play(soundType);
-      console.log('holaa');
     });
     this.view.mount(currentLevel.getWidth(), currentLevel.getHeight());
     this.runAnimation();
@@ -125,7 +124,12 @@ export class GameController {
       } // primera iteracion
       const step = Math.min(time - this.lastTime, 100) / 1000;
 
-      if (this.keys['esc']) return;
+      if (this.keys['esc']) {
+        this.lastTime = time; 
+        this.animationFrameId = requestAnimationFrame(frame);
+        return;
+      }
+
       this.model.animate(step, this.keys);
       const currentLevel = this.model.getCurrentLevel();
 
