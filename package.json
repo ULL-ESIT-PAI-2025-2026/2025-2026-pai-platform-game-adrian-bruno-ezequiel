@@ -5,6 +5,7 @@
   "type": "module",
   "private": true,
   "main": "index.js",
+  "homepage": "https://ULL-ESIT-PAI-2025-2026.github.io/2025-2026-pai-platform-game-adrian-bruno-ezequiel",
   "scripts": {
     "build": "tsc",
     "tsc:watch": "tsc -w",
@@ -15,6 +16,8 @@
     "sonar": "npx eslint \"src/**/*.ts\" -f json -o eslint-report.json ; npx sonarqube-scanner",
     "dev:server": "node scripts/dev-server.js",
     "start": "tsc-watch -p tsconfig.json --onSuccess \"npm run dev:server\""
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "PAI"
