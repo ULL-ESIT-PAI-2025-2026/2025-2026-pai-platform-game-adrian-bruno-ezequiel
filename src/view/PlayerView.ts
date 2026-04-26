@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc PlayerView
+ * @desc Defines the player data contract used by the rendering layer 
+ * (position, size, and movement speed).
  */
 
 import {Vector} from '../Vector';

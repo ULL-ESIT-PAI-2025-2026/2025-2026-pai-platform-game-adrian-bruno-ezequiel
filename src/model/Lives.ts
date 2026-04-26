@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Lives
+ * @desc Defines the UI actor that represents remaining lives with a 
+ * lightweight wobble animation.
  */
 
 import {Actor, KeyMap} from './Actor.js';

@@ -17,7 +17,7 @@ import {Lives} from './Lives.js';
 import {Score} from './Score.js';
 import {Player} from './Player.js';
 import {Vector} from '../Vector.js';
-import {SoundType} from '../view/audio.js';
+import {SoundType} from '../view/AudioManager.js';
 import {Actor, ActorType} from './Actor.js';
 
 export type Status = 'lost' | 'won' | null;

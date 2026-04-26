@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Lava
+ * @desc Defines the lava enemy/hazard logic with pattern-based movement and 
+ * obstacle collision handling.
  */
 
 import {Actor, KeyMap} from './Actor.js';

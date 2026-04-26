@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Audio
+ * @desc Manages game audio by mapping and playing sound effects and background
+ * music with safe browser playback behavior.
  */
 
 export type SoundType =

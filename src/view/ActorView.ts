@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc ActorView
+ * @desc Declares the minimal actor data contract used by the rendering layer
+ * to draw game entities.
  */
 
 import {Vector} from '../Vector';

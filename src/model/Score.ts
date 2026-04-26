@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Score
+ * @desc Defines the UI score actor, including update logic for score-increase
+ * animation feedback.
  */
 
 import {Actor, KeyMap} from './Actor.js';

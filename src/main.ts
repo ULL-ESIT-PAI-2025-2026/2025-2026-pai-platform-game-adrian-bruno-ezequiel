@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Main
+ * @desc Application entry point that wires up game levels, MVC instances, and
+ * launches gameplay.
  */
 
 import {GAME_LEVELS} from './GameLevels.js';

@@ -8,13 +8,14 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Controller
+ * @desc Coordinates the game flow between model and view, handling input, 
+ * animation frames, level progression, and sound playback.
  */
 
 import {Actor, GameModel, KeyMap} from '../model/GameModel.js';
 import {ActorView} from '../view/ActorView.js';
 import {PlayerView} from '../view/PlayerView.js';
-import {AudioManager, SoundType} from '../view/audio.js';
+import {AudioManager, SoundType} from '../view/AudioManager.js';
 import {GameView} from '../view/GameView.js';
 
 /** @classdesc Acts as the central controller in an MVC architecture. */
@@ -26,9 +27,9 @@ export class GameController {
   private readonly keys: KeyMap = Object.create(null);
   private keyHandlerCleanup: (() => void) | null = null;
   private static readonly KEY_MAP: Record<string, string> = {
-    'Escape': 'esc', // Escape key
-    'ArrowLeft': 'left', // Left arrow key
-    'ArrowUp': 'up', // Up arrow key
+    'Escape': 'esc',       // Escape key
+    'ArrowLeft': 'left',   // Left arrow key
+    'ArrowUp': 'up',       // Up arrow key
     'ArrowRight': 'right', // Right arrow key
   };
   private readonly audioManager: AudioManager;

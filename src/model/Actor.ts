@@ -8,7 +8,8 @@
  * @author Bruno Morales Hernández <morales.hernandez.28@ull.edu.es>
  * @author Ezequiel Juan Canale Oliva <ezequiel.juan.11@ull.edu.es>
  * @since Apr 27 2026
- * @desc Actor
+ * @desc Provides the core actor abstraction with shared state, collision 
+ * checks, and the update interface for all game entities.
  */
 
 import {Level} from './Level.js';
