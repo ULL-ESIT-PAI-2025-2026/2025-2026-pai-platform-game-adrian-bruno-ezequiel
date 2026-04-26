@@ -15,7 +15,7 @@
     "lint:ci": "eslint \"src/**/*.ts\"",
     "sonar": "npx eslint \"src/**/*.ts\" -f json -o eslint-report.json ; npx sonarqube-scanner",
     "dev:server": "node scripts/dev-server.js",
-    "start": "tsc-watch -p tsconfig.json --onSuccess \"npm run dev:server\""
+    "start": "tsc-watch -p tsconfig.json --onSuccess \"npm run dev:server\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
