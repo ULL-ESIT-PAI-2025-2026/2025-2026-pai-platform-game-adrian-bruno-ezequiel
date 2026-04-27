@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "rootDir": "./src",
-    "outDir": "dist",
+    "outDir": "./public",
     "declaration": false,
     "alwaysStrict": true,                     /* Parse in strict mode and emit "use strict" for each source file */
     "strict": true,                           /* Enable all strict type-checking options */
@@ -19,11 +19,11 @@
     "forceConsistentCasingInFileNames": true  /* Force all file names to have the same case style */
   },
   "exclude": [
-        "node_modules",
-        "build",
-        "lib",
-        "test",
-        "dist"
+    "node_modules",
+    "build",
+    "lib",
+    "test",
+    "dist"
   ],
   "include": ["./src"]
 }
