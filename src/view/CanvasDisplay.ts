@@ -308,25 +308,20 @@ export class CanvasDisplay {
    * required game state and view information.
    */
   drawFrame(frameData: DrawFrameData) {
-    const {
-      step,
-      center,
-      worldWidth,
-      worldHeight,
-      actors,
-      uiElements,
-      playerView,
-      numberOfCoins,
-      numberOfCollectedCoins,
-      status,
-      grid,
-    } = frameData;
-
-    this.animationTime += step;
-    this.updateViewport(center, worldWidth, worldHeight);
-    this.clearDisplay(status);
-    this.drawBackground(grid);
-    this.drawActors(actors, uiElements, numberOfCoins, numberOfCollectedCoins);
-    this.drawPlayer(playerView);
+    this.animationTime += frameData.step;
+    this.updateViewport(
+      frameData.center,
+      frameData.worldWidth,
+      frameData.worldHeight
+    );
+    this.clearDisplay(frameData.status);
+    this.drawBackground(frameData.grid);
+    this.drawActors(
+      frameData.actors,
+      frameData.uiElements,
+      frameData.numberOfCoins,
+      frameData.numberOfCollectedCoins
+    );
+    this.drawPlayer(frameData.playerView);
   }
 }
