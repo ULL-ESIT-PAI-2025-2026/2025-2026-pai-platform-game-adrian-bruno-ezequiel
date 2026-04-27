@@ -17,7 +17,7 @@
     "dev:server": "node scripts/dev-server.js",
     "start": "tsc-watch -p tsconfig.json --onSuccess \"npm run dev:server\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d public"
   },
   "keywords": [
     "PAI"
