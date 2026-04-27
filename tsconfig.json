@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "rootDir": "./src",
-    "outDir": "./public",
+    "outDir": "./dist",
     "declaration": false,
     "alwaysStrict": true,                     /* Parse in strict mode and emit "use strict" for each source file */
     "strict": true,                           /* Enable all strict type-checking options */
